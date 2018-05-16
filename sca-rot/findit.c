@@ -1,9 +1,9 @@
-/* 
+/*
  *
  *	ここで紹介するサンプルプログラムは, テンプレートが探索画像の
  *	中で回転してあったり, 拡大縮小している場合には対応していません．
  *
- *	ご注意: 
+ *	ご注意:
  *	テンプレートには背景部分があり, 探索画像中では背景部分は探索
  *	画像の背景に置き換わっています. したがって, テンプレートの全ての
  *	画素を探索画像中で比較するのではなく, 背景でない部分のみを
@@ -22,7 +22,7 @@
 #ifdef __STDC__
 int
 findPattern( RGB_PACKED_IMAGE *template, RGB_PACKED_IMAGE *image,
-		     double *cx, double *cy, 
+		     double *cx, double *cy,
 		     double *rotation, double *scaling )
 #else
 int
@@ -42,6 +42,14 @@ findPattern( template, image, cx, cy, rotation, scaling )
   RGB_PACKED_PIXEL *pixel ;
 
   /*
+   *  テンプレートを当てはめる位置を探索画像の全範囲に移動させながら,
+   *  テンプレートと探索画像の差がもっとも小さい位置 (posx, posy) を
+   *  見付ける.
+   */
+  mindiff = 0x7fffffff ;
+  posx=0; posy=0;
+
+	/*
    *  テンプレートの中心から見た, テンプレートの左上と右下の座標
    *  (x0,y0) と (x1, y1) をあらかじめ求めておく.
    */
@@ -50,13 +58,7 @@ findPattern( template, image, cx, cy, rotation, scaling )
   x1 = ( template->cols - 1 )/ 2 ;
   y1 = ( template->rows - 1 )/ 2 ;
 
-  /*
-   *  テンプレートを当てはめる位置を探索画像の全範囲に移動させながら,
-   *  テンプレートと探索画像の差がもっとも小さい位置 (posx, posy) を
-   *  見付ける.
-   */
-  mindiff = 0x7fffffff ;
-  posx=0; posy=0;
+
   for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
     for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) {
 
@@ -104,13 +106,13 @@ findPattern( template, image, cx, cy, rotation, scaling )
   }
   if ( mindiff == 0x7fffffff )
     return( HAS_ERROR ) ; /* 画像間の差が更新されていないので失敗と判断 */
-  
+
   /*
    *  探索の結果を戻り値の引数に格納
    */
   *cx = (double)posx ;
   *cy = (double)posy ;
-  *rotation = 0.0 ; 
+  *rotation = 0.0 ;
   *scaling = 1.0 ;
   return( NO_ERROR ) ;
 }
