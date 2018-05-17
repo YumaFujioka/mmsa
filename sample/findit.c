@@ -62,10 +62,10 @@ findPattern( template, image, cx, cy, rotation, scaling )
 
   for (i = -yout; i < yout; i++){
 		for(j = -xout; j < xout; j++){
-			if (i > 0) m = (int)(i/scale + 0.5);
-				else m = (int)(i/scale - 0.5);
-        if (j > 0) n = (int)(j/scale + 0.5);
-        else n = (int)(j/scale- 0.5);
+			if (i > 0) m = (int)(i/scale);
+				else m = (int)(i/scale);
+        if (j > 0) n = (int)(j/scale);
+        else n = (int)(j/scale);
         if ( (m >= -ys) && (m < ys) && (n >= -xs) && (n < xs) ){
           template2->p[i+yout][j+xout].r = template->p[m+ys][n+xs].r;
           template2->p[i+yout][j+xout].g = template->p[m+ys][n+xs].g;
