@@ -42,12 +42,14 @@ findPattern( template, image, cx, cy, rotation, scaling )
   RGB_PACKED_PIXEL *pixel ;
 
 	/* k¬ */
-	RGB_PACKED_IMAGE *template2 = allocRGBPackedImage(128,128);
-  int i,j,m,n;
 	int xs = template->cols/2;
 	int ys = template->rows/2;
-	double scale = 0.5;
-	
+	int xout = (template->cols * 1.5)/2;
+	int yout = (template->rows * 1.5)/2;
+	double scale = 1.5;
+	RGB_PACKED_IMAGE *template2 = allocRGBPackedImage(template->cols * scale,template->rows * scale);
+  int i,j,m,n;
+	/*
   for (i = -ys; i < ys; i++){
 		for(j = -xs; j < xs; j++){
 					template2->p[i+ys][j+xs].r = 255;
@@ -56,15 +58,23 @@ findPattern( template, image, cx, cy, rotation, scaling )
 
 		}
   }
+	*/
 
-  for (i = -ys; i < ys; i++){
-		for(j = -xs; j < xs; j++){
-				m = (int)(scale * i);
-				n = (int)(scale * j);
-				if ((m >= -ys) && (m < ys) && (n >= -xs) && (n < xs)) 
-					template2->p[m+ys][n+xs].r = template->p[i+ys][j+xs].r;
-					template2->p[m+ys][n+xs].g = template->p[i+ys][j+xs].g;
-					template2->p[m+ys][n+xs].b = template->p[i+ys][j+xs].b;
+  for (i = -yout; i < yout; i++){
+		for(j = -xout; j < xout; j++){
+			if (i > 0) m = (int)(i/scale + 0.5);
+				else m = (int)(i/scale - 0.5);
+        if (j > 0) n = (int)(j/scale + 0.5);
+        else n = (int)(j/scale- 0.5);
+        if ( (m >= -ys) && (m < ys) && (n >= -xs) && (n < xs) ){
+          template2->p[i+yout][j+xout].r = template->p[m+ys][n+xs].r;
+          template2->p[i+yout][j+xout].g = template->p[m+ys][n+xs].g;
+          template2->p[i+yout][j+xout].b = template->p[m+ys][n+xs].b;
+				}else{
+          template2->p[i+yout][j+xout].r = 0;
+          template2->p[i+yout][j+xout].g = 0;
+          template2->p[i+yout][j+xout].b = 0;
+				}
 
 		}
   }
@@ -72,8 +82,8 @@ findPattern( template, image, cx, cy, rotation, scaling )
 	template2->cols = (int)(scale * 2 * ys);
 	template2->rows = (int)(scale * 2 * xs);
 	*/
-	template2->cols = (int)(template->cols);
-	template2->rows = (int)(template->rows);
+	template2->cols = (int)(template->cols * scale);
+	template2->rows = (int)(template->rows * scale);
 	writeRGBPackedImage( template2, "test.ppm");
 	/* printf("%d",writeRGBPackedImage( template2, "test.ppm")); */
 	printf("%d",template2->cols);
