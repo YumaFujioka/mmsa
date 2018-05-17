@@ -44,21 +44,11 @@ findPattern( template, image, cx, cy, rotation, scaling )
 	/* k¬ */
 	int xs = template->cols/2;
 	int ys = template->rows/2;
-	int xout = (template->cols * 1.5)/2;
-	int yout = (template->rows * 1.5)/2;
-	double scale = 1.5;
+	double scale = 0.5;
+	int xout = (template->cols * scale)/2;
+	int yout = (template->rows * scale)/2;
 	RGB_PACKED_IMAGE *template2 = allocRGBPackedImage(template->cols * scale,template->rows * scale);
   int i,j,m,n;
-	/*
-  for (i = -ys; i < ys; i++){
-		for(j = -xs; j < xs; j++){
-					template2->p[i+ys][j+xs].r = 255;
-					template2->p[i+ys][j+xs].g = 255;
-					template2->p[i+ys][j+xs].b = 255;
-
-		}
-  }
-	*/
 
   for (i = -yout; i < yout; i++){
 		for(j = -xout; j < xout; j++){
