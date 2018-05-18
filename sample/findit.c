@@ -19,6 +19,52 @@
 #include <ctype.h>
 #include "pnmimg.h"
 
+RGB_PACKED_IMAGE *zoomreduction( RGB_PACKED_IMAGE *template)
+{
+	/* 縮小 */
+	int xs = template->cols/2;
+	int ys = template->rows/2;
+	double scale = 1.1;
+	int xout = (template->cols * scale)/2;
+	int yout = (template->rows * scale)/2;
+	RGB_PACKED_IMAGE *template2 = allocRGBPackedImage(template->cols * scale,template->rows * scale);
+  int i,j,m,n;
+
+  for (i = -yout; i < yout; i++){
+		for(j = -xout; j < xout; j++){
+			if (i > 0) m = (int)(i/scale + 0.5);
+				else m = (int)(i/scale - 0.5);
+        if (j > 0) n = (int)(j/scale + 0.5);
+        else n = (int)(j/scale - 0.5);
+        if ( (m >= -ys) && (m < ys) && (n >= -xs) && (n < xs) ){
+          template2->p[i+yout][j+xout].r = template->p[m+ys][n+xs].r;
+          template2->p[i+yout][j+xout].g = template->p[m+ys][n+xs].g;
+          template2->p[i+yout][j+xout].b = template->p[m+ys][n+xs].b;
+				}else{
+          template2->p[i+yout][j+xout].r = 255;
+          template2->p[i+yout][j+xout].g = 255;
+          template2->p[i+yout][j+xout].b = 255;
+				}
+
+		}
+  }
+	/* template2->data_p = template2->p; */
+	/*
+	template2->cols = (int)(scale * 2 * ys);
+	template2->rows = (int)(scale * 2 * xs);
+	*/
+	template2->cols = (int)(template->cols * scale);
+	template2->rows = (int)(template->rows * scale);
+	/* writeRGBPackedImage( template2, "test.ppm"); */
+	/* printf("%d",writeRGBPackedImage( template2, "test.ppm")); */
+	printf("%d",template2->cols);
+	printf("%d",template2->rows);
+
+	/*writeRGBPackedImage( template, "sample.ppm"); */
+	return template2;
+	freeRGBPackedImage(template2);
+}
+
 #ifdef __STDC__
 int
 findPattern( RGB_PACKED_IMAGE *template, RGB_PACKED_IMAGE *image,
@@ -41,46 +87,6 @@ findPattern( template, image, cx, cy, rotation, scaling )
   int diff, pels, dr, dg, db ;
   RGB_PACKED_PIXEL *pixel ;
 
-	/* 縮小 */
-	int xs = template->cols/2;
-	int ys = template->rows/2;
-	double scale = 0.5;
-	int xout = (template->cols * scale)/2;
-	int yout = (template->rows * scale)/2;
-	RGB_PACKED_IMAGE *template2 = allocRGBPackedImage(template->cols * scale,template->rows * scale);
-  int i,j,m,n;
-
-  for (i = -yout; i < yout; i++){
-		for(j = -xout; j < xout; j++){
-			if (i > 0) m = (int)(i/scale);
-				else m = (int)(i/scale);
-        if (j > 0) n = (int)(j/scale);
-        else n = (int)(j/scale);
-        if ( (m >= -ys) && (m < ys) && (n >= -xs) && (n < xs) ){
-          template2->p[i+yout][j+xout].r = template->p[m+ys][n+xs].r;
-          template2->p[i+yout][j+xout].g = template->p[m+ys][n+xs].g;
-          template2->p[i+yout][j+xout].b = template->p[m+ys][n+xs].b;
-				}else{
-          template2->p[i+yout][j+xout].r = 0;
-          template2->p[i+yout][j+xout].g = 0;
-          template2->p[i+yout][j+xout].b = 0;
-				}
-
-		}
-  }
-	/*
-	template2->cols = (int)(scale * 2 * ys);
-	template2->rows = (int)(scale * 2 * xs);
-	*/
-	template2->cols = (int)(template->cols * scale);
-	template2->rows = (int)(template->rows * scale);
-	writeRGBPackedImage( template2, "test.ppm");
-	/* printf("%d",writeRGBPackedImage( template2, "test.ppm")); */
-	printf("%d",template2->cols);
-	printf("%d",template2->rows);
-
-	freeRGBPackedImage(template2);
-	writeRGBPackedImage( template, "sample.ppm");
 
   /*
    *  テンプレートの中心から見た, テンプレートの左上と右下の座標
@@ -90,6 +96,7 @@ findPattern( template, image, cx, cy, rotation, scaling )
   y0 = -( template->rows / 2 ) ;
   x1 = ( template->cols - 1 )/ 2 ;
   y1 = ( template->rows - 1 )/ 2 ;
+	writeRGBPackedImage(template,"sample4.ppm");
 
   /*
    *  テンプレートを当てはめる位置を探索画像の全範囲に移動させながら,

@@ -70,9 +70,11 @@ main( argc, argv )
    *  ‚±‚ÌŠÖ”‚Í, ‚¤‚Ü‚­Œ©•t‚©‚Á‚½Žž‚É NO_ERROR (0) ‚ð•Ô‚µ,
    *  ‚»‚¤‚Å‚È‚¯‚ê‚Î HAS_ERROR (-1) ‚ð•Ô‚·‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·.
    */
-
+	template = zoomreduction(template); 
+	/*writeRGBPackedImage(template,"sample2.ppm");*/
   ret = findPattern( template, image, 
 			      &cx, &cy, &rotation, &scaling ) ;
+	/* scaling = 1.1; */
   if ( ret == HAS_ERROR ) {
     printError( "findPattern" ) ;
     printf( "%s is failed to be searched in %s\n", name_tmp, name_img ) ;
@@ -86,6 +88,10 @@ main( argc, argv )
   icy = (int)( cy + .5 ) ;
   isx = (int)( scaling * template->cols + .5 ) ;
   isy = (int)( scaling * template->rows + .5 ) ;
+	/*
+  isx = (int)( template->cols + .5 ) ;
+  isy = (int)( template->rows + .5 ) ;
+	*/
   irot = (int)( rotation + .5 ) ;
   setRGBMarkColor( 255, 255, 0 ) ;
   drawRotatedRectangleRGBPackedImage( image, icx, icy, isx, isy, irot ) ;
