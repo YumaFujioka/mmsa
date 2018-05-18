@@ -20,7 +20,7 @@
 #include "pnmimg.h"
 #include <math.h>
 
-RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template)
+RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template,int deg)
 {
 	int    i, j, m, n;
   float    x, y, p, q;
@@ -32,7 +32,7 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template)
 	int g_array[128][128];
 	int b_array[128][128];
   int    dr,dg,db;
-	int deg = 30;
+	//int deg = 30;
 	for (int a = 0; a < 128; a++){
 		for (int b = 0; b < 128; b++){
 			r_array[a][b]=template->p[a][b].r;
@@ -67,8 +67,8 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template)
       else n = (int)(x-1);
       q = y - m;
       p = x - n;
-			printf("%d\n",m+1+ys);
-			printf("%d\n",n+1+xs);
+			//printf("%d\n",m+1+ys);
+			//printf("%d\n",n+1+xs);
 
       if ( (m >= -ys) && (m < ys-1) && (n >= -xs) && (n < xs-1) )
         dr = (int)(
@@ -131,12 +131,12 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template)
 }
 
 
-RGB_PACKED_IMAGE *zoomreduction( RGB_PACKED_IMAGE *template)
+RGB_PACKED_IMAGE *zoomreduction( RGB_PACKED_IMAGE *template,double scale)
 {
 	/* k¬ */
 	int xs = template->cols/2;
 	int ys = template->rows/2;
-	double scale = 1.2;
+	//double scale = 1.2;
 	int xout = (template->cols * scale)/2;
 	int yout = (template->rows * scale)/2;
 	RGB_PACKED_IMAGE *template2 = allocRGBPackedImage(template->cols * scale,template->rows * scale);

@@ -70,8 +70,8 @@ main( argc, argv )
    *  ‚±‚ÌŠÖ”‚Í, ‚¤‚Ü‚­Œ©•t‚©‚Á‚½‚É NO_ERROR (0) ‚ğ•Ô‚µ,
    *  ‚»‚¤‚Å‚È‚¯‚ê‚Î HAS_ERROR (-1) ‚ğ•Ô‚·‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·.
    */
-	template = rota(template);
-	//template = zoomreduction(template); 
+	template = rota(template,20);
+	template = zoomreduction(template,1.5); 
 	writeRGBPackedImage(template,"sample5.ppm");
   ret = findPattern( template, image, 
 			      &cx, &cy, &rotation, &scaling ) ;
