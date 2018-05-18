@@ -67,52 +67,56 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template)
       else n = (int)(x-1);
       q = y - m;
       p = x - n;
-      if ( (m >= -ys) && (m < ys) && (n >= -xs) && (n < xs) )
-				/*
+			printf("%d\n",m+1+ys);
+			printf("%d\n",n+1+xs);
+
+      if ( (m >= -ys) && (m < ys-1) && (n >= -xs) && (n < xs-1) )
         dr = (int)(
 						(1.0-q)*((1.0-p)*(template->p[m  +ys][n  +xs].r)
-                               + p*(template->p[m  +ys][n+1+xs].r)));
+                               + p*(template->p[m  +ys][n+1+xs].r))
                        + q*((1.0-p)*(template->p[m+1+ys][n  +xs].r)
                                  + p*(template->p[m+1+ys][n+1+xs].r)));
-				*/
+
+				/*
         dr = (int)((1.0-q)*((1.0-p)*r_array[m  +ys][n  +xs]
                                + p*r_array[m  +ys][n+1+xs])
                        + q*((1.0-p)*r_array[m+1+ys][n  +xs]
-                                 + p*r_array[m+1+ys][n+1+xs]));
+                                 + p*r_array[m+1+ys][n+1+xs]))
+																 */
 				//dr = 3;
       else
         dr = 255;
       if (dr <   0) dr = 255;
       if (dr > 255) dr = 255;
       template3->p[i+ys][j+xs].r = dr;
-			printf("%d\n",dr);
-      if ( (m >= -ys) && (m < ys) && (n >= -xs) && (n < xs) )
-			/*
+			//printf("%d\n",dr);
+      if ( (m >= -ys) && (m < ys-1) && (n >= -xs) && (n < xs-1) )
         dg = (int)((1.0-q)*((1.0-p)*template->p[m  +ys][n  +xs].g
                                + p*template->p[m  +ys][n+1+xs].g)
                        + q*((1.0-p)*template->p[m+1+ys][n  +xs].g
                                  + p*template->p[m+1+ys][n+1+xs].g));
-	    */
+			/*
         dg = (int)((1.0-q)*((1.0-p)*g_array[m  +ys][n  +xs]
                                + p*g_array[m  +ys][n+1+xs])
                        + q*((1.0-p)*g_array[m+1+ys][n  +xs]
                                  + p*g_array[m+1+ys][n+1+xs]));
+			*/
       else
         dg = 255;
       if (dg <   0) dg = 255;
       if (dg > 255) dg = 255;
       template3->p[i+ys][j+xs].g = dg;
-      if ( (m >= -ys) && (m < ys) && (n >= -xs) && (n < xs) )
-			/*
+      if ( (m >= -ys) && (m < ys-1) && (n >= -xs) && (n < xs-1) )
         db = (int)((1.0-q)*((1.0-p)*template->p[m  +ys][n  +xs].b
                                + p*template->p[m  +ys][n+1+xs].b)
                        + q*((1.0-p)*template->p[m+1+ys][n  +xs].b
                                  + p*template->p[m+1+ys][n+1+xs].b));
-			*/
+			/*
         db = (int)((1.0-q)*((1.0-p)*b_array[m  +ys][n  +xs]
                                + p*b_array[m  +ys][n+1+xs])
                        + q*((1.0-p)*b_array[m+1+ys][n  +xs]
                                  + p*b_array[m+1+ys][n+1+xs]));
+			*/
 
       else
         db = 255;
