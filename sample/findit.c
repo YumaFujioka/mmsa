@@ -18,13 +18,121 @@
 #include <fcntl.h>
 #include <ctype.h>
 #include "pnmimg.h"
+#include <math.h>
+
+RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template)
+{
+	int    i, j, m, n;
+  float    x, y, p, q;
+  double    r;
+  float    c,s;
+  int    xs = template->cols/2;
+  int    ys = template->rows/2;
+	int r_array[128][128];
+	int g_array[128][128];
+	int b_array[128][128];
+  int    dr,dg,db;
+	int deg = 30;
+	for (int a = 0; a < 128; a++){
+		for (int b = 0; b < 128; b++){
+			r_array[a][b]=template->p[a][b].r;
+			g_array[a][b]=template->p[a][b].g;
+			b_array[a][b]=template->p[a][b].b;
+		}
+	}
+
+	RGB_PACKED_IMAGE *template3 = allocRGBPackedImage(template->cols , template->rows );
+	/*
+	for (int a = 0; a < 128; a++){
+		for (int b = 0; b < 128; b++){
+			template3->p[a][b].r = 255;
+			template3->p[a][b].g = 255;
+		}
+	}
+	*/
+	//int *dr;
+	//dr = (int*)malloc(sizeof(int)*20000);
+	//RGB_PACKED_IMAGE *template3 = allocRGBPackedImage(300, 300);
+
+  r = deg*3.141592/180.0;
+  c = (float)cos(r);
+  s = (float)sin(r);
+  for (i = -ys; i < ys; i++) {
+    for (j = -xs; j < xs; j++) {
+      y = j*s + i*c;
+      x = j*c - i*s;
+      if (y > 0) m = (int)y;
+      else m = (int)(y-1);
+      if (x > 0) n = (int)x;
+      else n = (int)(x-1);
+      q = y - m;
+      p = x - n;
+      if ( (m >= -ys) && (m < ys) && (n >= -xs) && (n < xs) )
+				/*
+        dr = (int)(
+						(1.0-q)*((1.0-p)*(template->p[m  +ys][n  +xs].r)
+                               + p*(template->p[m  +ys][n+1+xs].r)));
+                       + q*((1.0-p)*(template->p[m+1+ys][n  +xs].r)
+                                 + p*(template->p[m+1+ys][n+1+xs].r)));
+				*/
+        dr = (int)((1.0-q)*((1.0-p)*r_array[m  +ys][n  +xs]
+                               + p*r_array[m  +ys][n+1+xs])
+                       + q*((1.0-p)*r_array[m+1+ys][n  +xs]
+                                 + p*r_array[m+1+ys][n+1+xs]));
+				//dr = 3;
+      else
+        dr = 255;
+      if (dr <   0) dr = 255;
+      if (dr > 255) dr = 255;
+      template3->p[i+ys][j+xs].r = dr;
+			printf("%d\n",dr);
+      if ( (m >= -ys) && (m < ys) && (n >= -xs) && (n < xs) )
+			/*
+        dg = (int)((1.0-q)*((1.0-p)*template->p[m  +ys][n  +xs].g
+                               + p*template->p[m  +ys][n+1+xs].g)
+                       + q*((1.0-p)*template->p[m+1+ys][n  +xs].g
+                                 + p*template->p[m+1+ys][n+1+xs].g));
+	    */
+        dg = (int)((1.0-q)*((1.0-p)*g_array[m  +ys][n  +xs]
+                               + p*g_array[m  +ys][n+1+xs])
+                       + q*((1.0-p)*g_array[m+1+ys][n  +xs]
+                                 + p*g_array[m+1+ys][n+1+xs]));
+      else
+        dg = 255;
+      if (dg <   0) dg = 255;
+      if (dg > 255) dg = 255;
+      template3->p[i+ys][j+xs].g = dg;
+      if ( (m >= -ys) && (m < ys) && (n >= -xs) && (n < xs) )
+			/*
+        db = (int)((1.0-q)*((1.0-p)*template->p[m  +ys][n  +xs].b
+                               + p*template->p[m  +ys][n+1+xs].b)
+                       + q*((1.0-p)*template->p[m+1+ys][n  +xs].b
+                                 + p*template->p[m+1+ys][n+1+xs].b));
+			*/
+        db = (int)((1.0-q)*((1.0-p)*b_array[m  +ys][n  +xs]
+                               + p*b_array[m  +ys][n+1+xs])
+                       + q*((1.0-p)*b_array[m+1+ys][n  +xs]
+                                 + p*b_array[m+1+ys][n+1+xs]));
+
+      else
+        db = 255;
+      if (db <   0) db = 255;
+      if (db > 255) db = 255;
+      template3->p[i+ys][j+xs].b = db;
+    }
+  }
+	//printf("%d\n",dr);
+  return template3;
+	freeRGBPackedImage(template3);
+}
+
 
 RGB_PACKED_IMAGE *zoomreduction( RGB_PACKED_IMAGE *template)
 {
 	/* 縮小 */
 	int xs = template->cols/2;
 	int ys = template->rows/2;
-	double scale = 1.1;
+	double scale = 1.2;
 	int xout = (template->cols * scale)/2;
 	int yout = (template->rows * scale)/2;
 	RGB_PACKED_IMAGE *template2 = allocRGBPackedImage(template->cols * scale,template->rows * scale);
@@ -96,7 +204,7 @@ findPattern( template, image, cx, cy, rotation, scaling )
   y0 = -( template->rows / 2 ) ;
   x1 = ( template->cols - 1 )/ 2 ;
   y1 = ( template->rows - 1 )/ 2 ;
-	writeRGBPackedImage(template,"sample4.ppm");
+	/* writeRGBPackedImage(template,"sample4.ppm"); */
 
   /*
    *  テンプレートを当てはめる位置を探索画像の全範囲に移動させながら,

@@ -70,15 +70,16 @@ main( argc, argv )
    *  ‚±‚ÌŠÖ”‚Í, ‚¤‚Ü‚­Œ©•t‚©‚Á‚½‚É NO_ERROR (0) ‚ğ•Ô‚µ,
    *  ‚»‚¤‚Å‚È‚¯‚ê‚Î HAS_ERROR (-1) ‚ğ•Ô‚·‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·.
    */
-	template = zoomreduction(template); 
-	/*writeRGBPackedImage(template,"sample2.ppm");*/
+	template = rota(template);
+	//template = zoomreduction(template); 
+	writeRGBPackedImage(template,"sample5.ppm");
   ret = findPattern( template, image, 
 			      &cx, &cy, &rotation, &scaling ) ;
 	/* scaling = 1.1; */
   if ( ret == HAS_ERROR ) {
     printError( "findPattern" ) ;
     printf( "%s is failed to be searched in %s\n", name_tmp, name_img ) ;
-    return(1) ;
+    return(1);
   }
 
   /*
