@@ -44,6 +44,8 @@ main( argc, argv )
   int icx, icy, irot, isx, isy ;
   int ret ;
   extern int findPattern __P(( RGB_PACKED_IMAGE*, RGB_PACKED_IMAGE*, double*, double*, double*, double* )) ;
+  extern RGB_PACKED_IMAGE* zoomreduction(RGB_PACKED_IMAGE*,double);
+  extern RGB_PACKED_IMAGE* rota(RGB_PACKED_IMAGE*,int);
 
   if ( argc > 1 ) name_tmp = argv[1] ;
   if ( argc > 2 ) name_img = argv[2] ;
@@ -71,7 +73,7 @@ main( argc, argv )
    *  ‚»‚¤‚Å‚È‚¯‚ê‚Î HAS_ERROR (-1) ‚ð•Ô‚·‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·.
    */
 	template = rota(template,20);
-	template = zoomreduction(template,1.5); 
+	//template = zoomreduction(template,1.5); 
 	writeRGBPackedImage(template,"sample5.ppm");
   ret = findPattern( template, image, 
 			      &cx, &cy, &rotation, &scaling ) ;
