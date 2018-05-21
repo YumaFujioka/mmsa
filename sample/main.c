@@ -72,18 +72,22 @@ main( argc, argv )
    *  ‚±‚ÌŠÖ”‚Í, ‚¤‚Ü‚­Œ©•t‚©‚Á‚½‚É NO_ERROR (0) ‚ğ•Ô‚µ,
    *  ‚»‚¤‚Å‚È‚¯‚ê‚Î HAS_ERROR (-1) ‚ğ•Ô‚·‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·.
    */
-	template = rota(template,20);
-	//template = zoomreduction(template,1.5); 
-	writeRGBPackedImage(template,"sample5.ppm");
+
+
+
+  //template = rota(template,20);//‰ñ“]‚·‚é
+  //template = zoomreduction(template,1.5); //Šg‘åk¬‚·‚é
+
   ret = findPattern( template, image, 
-			      &cx, &cy, &rotation, &scaling ) ;
-	/* scaling = 1.1; */
+          &cx, &cy, &rotation, &scaling ) ;
   if ( ret == HAS_ERROR ) {
     printError( "findPattern" ) ;
     printf( "%s is failed to be searched in %s\n", name_tmp, name_img ) ;
     return(1);
   }
-
+  else{
+    printf("NO_ERROR\n");
+  }
   /*
    *  ’Tõ‚µ‚½Œ‹‰Ê‚ğŒ³‚Ì’Tõ‰æ‘œ‚Ìã‚É’·•ûŒ`‚Ì˜g‚Å•\¦‚µ‚Ü‚·.
    */
