@@ -197,13 +197,15 @@ findPattern( template, image, cx, cy, rotation, scaling )
   //•ÏX‰ÓŠ
   //‚±‚±‚ç‚Ö‚ñ‚Åloop‚·‚é
   double scal_min = 0.7;//k¬‰ºŒÀ
-  double scal_max = 1.3;//Šg‘åãŒÀ
+  double scal_max = 0.7;//Šg‘åãŒÀ
   double scal_increment = 0.1;//‚İ•
 
-  int rot_min = -30;
-  int rot_max = 30;
+  int rot_min = -30;//‰ñ“]”ÍˆÍ
+  int rot_max = 30;//‰ñ“]”ÍˆÍ
   int rot_increment = 10;//‚İ•
 
+  RGB_PACKED_IMAGE *template_raw;
+  template_raw = template;
 
   int mindiff_all = 0x7fffffff ; //return—p‚Ì•Ï”
   double posx_all, posy_all, rotate_all, scale_all; //return—p‚Ì•Ï”
@@ -216,11 +218,12 @@ findPattern( template, image, cx, cy, rotation, scaling )
   int diff, pels, dr, dg, db ;
   RGB_PACKED_PIXEL *pixel ;
 
+
   //loopn‚Ü‚è
   for (scal = scal_min; scal <= scal_max ; scal += scal_increment){
     for (rot = rot_min; rot <= rot_max ; rot += rot_increment){
 
-      template = zoomreduction(template, scal);//Šg‘åk¬
+      template = zoomreduction(template_raw, scal);//Šg‘åk¬
       template = rota(template, rot);//‰ñ“]
 
       /*
