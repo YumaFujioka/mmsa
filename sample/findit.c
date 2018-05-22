@@ -196,13 +196,13 @@ findPattern( template, image, cx, cy, rotation, scaling )
 
   //変更箇所
   //ここらへんでloopする
-  double scal_min = 0.7;//縮小下限
-  double scal_max = 1.3;//拡大上限
+  double scal_min = 0.6;//縮小下限
+  double scal_max = 1.6;//拡大上限
   double scal_increment = 0.1;//刻み幅
 
   int rot_min = -30;//回転範囲
   int rot_max = 30;//回転範囲
-  int rot_increment = 10;//刻み幅
+  int rot_increment = 5;//刻み幅
 
   RGB_PACKED_IMAGE *template_raw;
   template_raw = template;
@@ -222,91 +222,97 @@ findPattern( template, image, cx, cy, rotation, scaling )
 
 
 
-  ///////////////////////////
+  
+  ////////////////大体の場所を確保/////////////  
 
-//  scal = 1.0;
-//  rot = 0;
-//  template = zoomreduction(template_raw, scal);//拡大縮小
-//  template = rota(template, rot);//回転
-//  /*
-//   *  テンプレートの中心から見た, テンプレートの左上と右下の座標
-//   *  (x0,y0) と (x1, y1) をあらかじめ求めておく.
-//   */
-//  x0 = -( template->cols / 2 ) ;
-//  y0 = -( template->rows / 2 ) ;
-//  x1 = ( template->cols - 1 )/ 2 ;
-//  y1 = ( template->rows - 1 )/ 2 ;
-//  /*
-//   *  テンプレートを当てはめる位置を探索画像の全範囲に移動させながら,
-//   *  テンプレートと探索画像の差がもっとも小さい位置 (posx, posy) を
-//   *  見付ける.
-//   */
-//  mindiff = 0x7fffffff ;
-//  posx=0; posy=0;
-//  //for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
-//    //for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) { // 変更前（templateの中心をimage内で全探索）
-//  for ( yy = -y0 ; yy < image->rows - y1 ; yy++ ) {
-//    for ( xx = -x0 ; xx < image->cols - x1 ; xx++ ) { // 変更後（templateがimage内に完全に含まれる前提で全探索）
-//      /*
-//       *  ある位置 (xx, yy) におけるふたつの画像間の差を求める.
-//       *  画像の差とは, ここでは R,G,B 値の差の絶対値の累積を用いた.
-//       */
-//      diff = 0 ; /* R,G,B それぞれの画素の差の累計 */
-//      pels = 0 ; /* 有効な比較を行った画素数 */
-//      pixel = template->data_p ; /* テンプレートデータの先頭画素 */
-//      for ( dy = yy + y0 ; dy <= yy + y1 ; dy++ ) {
-//  if ( dy >= 0 && dy < image->rows ) {
-//    /* 探索画像の外(上/下)に出てないことを確認し... */
-//    for ( dx = xx + x0 ; dx <= xx + x1 ; dx++, pixel++ ) {
-//      if ( dx >= 0 && dx < image->cols ) {
-//        /* 探索画像の外(左/右)に出てないことを確認し... */
-//        if ( pixel->r != 255 || pixel->g != 255 || pixel->b != 255 ) {
-//    /* テンプレート画素が背景でないことを確認し... */
-//    pels ++ ;
-//    if (( dr = image->p[dy][dx].r - pixel->r ) < 0 ) dr = -dr ;
-//    if (( dg = image->p[dy][dx].g - pixel->g ) < 0 ) dg = -dg ;
-//    if (( db = image->p[dy][dx].b - pixel->b ) < 0 ) db = -db ;
-//    diff += ( dr + dg + db ) ;
-//        }
-//      }
-//    }
-//  }
-//  else {
-//    /* テンプレートを一行読み飛ばしたので, ポインタを調整する */
-//    pixel += template->cols ;
-//  }
-//      }
-//      if ( pels ) { /* 有効に差が累積されていた場合には... */
-//  diff /= pels ; /* 画素の差の累計を有効画素数で割って正規化する */
-//  /*
-//   *  これまでの結果と比較し, 差が小さければその位置を採用する.
-//   */
-//  if ( diff < mindiff ) {
-//    mindiff = diff ;
-//    posx = xx ;
-//    posy = yy ;
-//  }
-//      }
-//    }
-//  }
-//  //暫定値の更新
-//  if ( mindiff < mindiff_all ){
-//    mindiff_all = mindiff ;
-//    posx_all = posx ;
-//    posy_all = posy ;
-//    rotate_all = rot ;
-//    scale_all = scal ;
-//  }
-//
-//  printf("mindiff:%d scale:%f rotate:%f posx:%d posy:%d(scal:1.0, rot:0)\n", mindiff, scal, rot, posx, posy);
-//
-//
-  /////////////////
+  scal = 1.0;
+  rot = 0;
+  template = zoomreduction(template_raw, scal);//拡大縮小
+  template = rota(template, rot);//回転
+  /*
+   *  テンプレートの中心から見た, テンプレートの左上と右下の座標
+   *  (x0,y0) と (x1, y1) をあらかじめ求めておく.
+   */
+  x0 = -( template->cols / 2 ) ;
+  y0 = -( template->rows / 2 ) ;
+  x1 = ( template->cols - 1 )/ 2 ;
+  y1 = ( template->rows - 1 )/ 2 ;
+  /*
+   *  テンプレートを当てはめる位置を探索画像の全範囲に移動させながら,
+   *  テンプレートと探索画像の差がもっとも小さい位置 (posx, posy) を
+   *  見付ける.
+   */
+  mindiff = 0x7fffffff ;
+  posx=0; posy=0;
+  //for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
+    //for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) { // 変更前（templateの中心をimage内で全探索）
+  for ( yy = -y0 ; yy < image->rows - y1 ; yy++ ) {
+    for ( xx = -x0 ; xx < image->cols - x1 ; xx++ ) { // 変更後（templateがimage内に完全に含まれる前提で全探索）
+      /*
+       *  ある位置 (xx, yy) におけるふたつの画像間の差を求める.
+       *  画像の差とは, ここでは R,G,B 値の差の絶対値の累積を用いた.
+       */
+      diff = 0 ; /* R,G,B それぞれの画素の差の累計 */
+      pels = 0 ; /* 有効な比較を行った画素数 */
+      pixel = template->data_p ; /* テンプレートデータの先頭画素 */
+      for ( dy = yy + y0 ; dy <= yy + y1 ; dy++ ) {
+  if ( dy >= 0 && dy < image->rows ) {
+    /* 探索画像の外(上/下)に出てないことを確認し... */
+    for ( dx = xx + x0 ; dx <= xx + x1 ; dx++, pixel++ ) {
+      if ( dx >= 0 && dx < image->cols ) {
+        /* 探索画像の外(左/右)に出てないことを確認し... */
+        if ( pixel->r != 255 || pixel->g != 255 || pixel->b != 255 ) {
+    /* テンプレート画素が背景でないことを確認し... */
+    pels ++ ;
+    if (( dr = image->p[dy][dx].r - pixel->r ) < 0 ) dr = -dr ;
+    if (( dg = image->p[dy][dx].g - pixel->g ) < 0 ) dg = -dg ;
+    if (( db = image->p[dy][dx].b - pixel->b ) < 0 ) db = -db ;
+    diff += ( dr + dg + db ) ;
+        }
+      }
+    }
+  }
+  else {
+    /* テンプレートを一行読み飛ばしたので, ポインタを調整する */
+    pixel += template->cols ;
+  }
+      }
+      if ( pels ) { /* 有効に差が累積されていた場合には... */
+  diff /= pels ; /* 画素の差の累計を有効画素数で割って正規化する */
+  /*
+   *  これまでの結果と比較し, 差が小さければその位置を採用する.
+   */
+  if ( diff < mindiff ) {
+    mindiff = diff ;
+    posx = xx ;
+    posy = yy ;
+  }
+      }
+    }
+  }
+  //暫定値の更新
+  if ( mindiff < mindiff_all ){
+    mindiff_all = mindiff ;
+    posx_all = posx ;
+    posy_all = posy ;
+    rotate_all = rot ;
+    scale_all = scal ;
+  }
+
+  printf("mindiff:%d posx:%d posy:%d(scal:1.0, rot:0)\n", mindiff, posx, posy);
+
+  
+  //大体の場所を確保
+  int around_posx = posx;
+  int around_posy = posy;
+  int error = 20;
+
+  /////////////////大体の場所を確保/////////////
 
 
   //loop始まり
-  for (scal = scal_min; scal <= scal_max ; scal += scal_increment){
-    for (rot = rot_min; rot <= rot_max ; rot += rot_increment){
+  for (rot = rot_min; rot <= rot_max ; rot += rot_increment){
+    for (scal = scal_min; scal <= scal_max ; scal += scal_increment){
 
       template = zoomreduction(template_raw, scal);//拡大縮小
       template = rota(template, rot);//回転
@@ -329,9 +335,10 @@ findPattern( template, image, cx, cy, rotation, scaling )
       posx=0; posy=0;
       //for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
         //for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) { // 変更前（templateの中心をimage内で全探索）
-      for ( yy = -y0 ; yy < image->rows - y1 ; yy++ ) {
-        for ( xx = -x0 ; xx < image->cols - x1 ; xx++ ) { // 変更後（templateがimage内に完全に含まれる前提で全探索）
-
+      //for ( yy = -y0 ; yy < image->rows - y1 ; yy++ ) {
+        //for ( xx = -x0 ; xx < image->cols - x1 ; xx++ ) { // 変更後（templateがimage内に完全に含まれる前提で全探索）
+      for ( yy = around_posy - error ; yy < around_posy + error ; yy++ ) {
+        for ( xx = around_posx - error ; xx < around_posx + error ; xx++ ) { // 変更後（大体検討をつけて探索）
           /*
            *  ある位置 (xx, yy) におけるふたつの画像間の差を求める.
            *  画像の差とは, ここでは R,G,B 値の差の絶対値の累積を用いた.
@@ -383,9 +390,12 @@ findPattern( template, image, cx, cy, rotation, scaling )
         rotate_all = rot ;
         scale_all = scal ;
       }
-      printf("mindiff:%d scale:%f rotate:%f posx:%d posy:%d\n", mindiff, scal, rot, posx, posy);
+      //printf("mindiff:%d scale:%3.1f rotate:%4.1f posx:%d posy:%d\n", mindiff, scal, rot, posx, posy);
 
     }
+
+    printf("mindiff:%d rotate:%4.1f posx:%d posy:%d\n", mindiff, rot, posx, posy);
+
   } //loop終わり
 
   //returnの準備
