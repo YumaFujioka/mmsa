@@ -14,6 +14,8 @@
 #include <fcntl.h>
 #include <ctype.h>
 #include "pnmimg.h"
+#include <time.h>
+
 
 #ifdef __STDC__
 int
@@ -35,6 +37,9 @@ main( argc, argv )
    *  名前を指定することも出来ます. 指定しなければ, "result.ppm" という
    *  名前が用いられます.
    */
+  clock_t start,end;//時間計測
+  start = clock();
+
   char *name_tmp = "template.ppm" ;
   char *name_img = "image.ppm" ;
   char *name_out = "result.ppm" ;
@@ -110,11 +115,17 @@ main( argc, argv )
   printf( "location (%5.1lf,%5.1lf), rotation %6.1lf, scaling %4.2lf\n",
 	  cx, cy, rotation, scaling ) ;
 
+
+
   if ( writeRGBPackedImage( image, name_out ) == HAS_ERROR ) {
     printError( name_out ) ;
+    end = clock();//時間計測
+    printf("processing time:%.2fsec\n",(double)(end-start)/CLOCKS_PER_SEC);
     return(1) ;
   }
   printf( "result image is saved in %s\n", name_out ) ;
 
+  end = clock();//時間計測
+  printf("processing time:%.2fsec\n",(double)(end-start)/CLOCKS_PER_SEC);
   return(0) ;
 }
