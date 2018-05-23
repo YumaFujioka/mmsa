@@ -35,7 +35,8 @@ findPattern( template, image, cx, cy, rotation, scaling )
 #endif
 {
   int mindiff ;
-  int posx, posy, rot, scal ;
+  int posx, posy, rot ;
+	double scal ;
   int xx, yy, dx, dy ;
   int x0, y0, x1, y1 ;
   int diff, pels, dr, dg, db ;
@@ -48,6 +49,7 @@ findPattern( template, image, cx, cy, rotation, scaling )
    */
   mindiff = 0x7fffffff ;
   posx=0; posy=0;
+  scal=1.0
 
 	/*
    *  テンプレートの中心から見た, テンプレートの左上と右下の座標
@@ -58,10 +60,13 @@ findPattern( template, image, cx, cy, rotation, scaling )
   x1 = ( template->cols - 1 )/ 2 ;
   y1 = ( template->rows - 1 )/ 2 ;
 
+  RGB_PACKED_IMAGE *rescale_templete
+	for( k = 0.6, k < 1.4, k += 0.1 ) {
+		rescale_templete
+	}
 
   for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
     for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) {
-
       /*
        *  ある位置 (xx, yy) におけるふたつの画像間の差を求める.
        *  画像の差とは, ここでは R,G,B 値の差の絶対値の累積を用いた.
