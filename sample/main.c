@@ -17,6 +17,8 @@
 #include <time.h>
 
 
+
+
 #ifdef __STDC__
 int
 main( int argc, char *argv[] )
@@ -127,5 +129,47 @@ main( argc, argv )
 
   end = clock();//ŽžŠÔŒv‘ª
   printf("processing time:%.2fsec\n",(double)(end-start)/CLOCKS_PER_SEC);
+
+
+  //level1
+  double usagi_1[2] = {50, 170};
+  double inu_1[2] = {140, 175};
+  double reoinu_1[2] = {300, 65};
+  double tamago_1[2] = {260, 175};
+  double yuurei_1[2] = {100, 60};
+  double pengin_1[2] = {50, 170};
+  double neko_1[2] = {145, 175};
+  double saru_1[2] = {300, 65};
+  double saboten_1[2] = {260, 175};
+  double usamimi_1[2] = {70, 60};
+  double usamimi2_1[2] = {200, 80};
+
+  //level2
+  double reoinu_2[3] = {50, 180, 0.9};
+  double inu_2[3] = {80, 60, 1.1};
+  double usagi_2[3] = {150, 170, 0.8};
+  double usamimi_2[3] = {260, 150, 1.3};
+  double usamimi2_2[3] = {200, 50, 0.7};
+  double tamago_2[3] = {55, 170, 0.9};
+  double pengin_2[3] = {80, 50, 1.1};
+  double saboten_2[3] = {140, 200, 0.8};
+  double neko_2[3] = {275, 160, 1.3};
+  double saru_2[3] = {285, 50, 0.7};
+  double yuurei_2[3] = {175, 85, 1.0};
+
+  //level3
+  double usagi_3[4] = {65, 121, 0.8, 11};
+  double neko_3[4] = {246, 143, 1.1, 17};
+  double reoinu_3[4] = {175, 145, 1.4, -12};
+  double tamago_3[4] = {200, 67, 0.6, -25};
+  double usamimi2_3[4] = {70, 65, 1.2, 16};
+  double pengin_3[4] = {292, 153, 0.9, -18};
+  double saru_3[4] = {111, 91, 1.6, -25};
+  double inu_3[4] = {65, 151, 0.8, 11};
+  double usamimi_3[4] = {250, 92, 1.0, -6};
+  double yuurei_3[4] = {111, 170, 1.3, -5};
+  double saboten_3[4] = {171, 162, 0.8, 14};
+
+
   return(0) ;
 }
