@@ -197,11 +197,11 @@ findPattern( template, image, cx, cy, rotation, scaling )
   //•ÏX‰ÓŠ
   //‚±‚±‚ç‚Ö‚ñ‚Åloop‚·‚é
   double scal_min = 0.6;//k¬‰ºŒÀ
-  double scal_max = 1.6;//Šg‘åãŒÀ
+  double scal_max = 1.7;//Šg‘åãŒÀ
   double scal_increment = 0.1;//‚İ•
 
-  int rot_min = -30;//‰ñ“]”ÍˆÍ
-  int rot_max = 30;//‰ñ“]”ÍˆÍ
+  int rot_min = -25;//‰ñ“]”ÍˆÍ
+  int rot_max = 20;//‰ñ“]”ÍˆÍ
   int rot_increment = 5;//‚İ•
 
   RGB_PACKED_IMAGE *template_raw;
@@ -217,8 +217,6 @@ findPattern( template, image, cx, cy, rotation, scaling )
   int x0, y0, x1, y1 ;
   int diff, pels, dr, dg, db ;
   RGB_PACKED_PIXEL *pixel ;
-
-
 
 
 
@@ -301,7 +299,6 @@ findPattern( template, image, cx, cy, rotation, scaling )
 
   printf("mindiff:%d posx:%d posy:%d(scal:1.0, rot:0)\n", mindiff, posx, posy);
 
-  
   //‘å‘Ì‚ÌêŠ‚ğŠm•Û
   int around_posx = posx;
   int around_posy = posy;
@@ -311,8 +308,8 @@ findPattern( template, image, cx, cy, rotation, scaling )
 
 
   //loopn‚Ü‚è
-  for (rot = rot_min; rot <= rot_max ; rot += rot_increment){
-    for (scal = scal_min; scal <= scal_max ; scal += scal_increment){
+  for (scal = scal_min; scal <= scal_max ; scal += scal_increment){
+    for (rot = rot_min; rot <= rot_max ; rot += rot_increment){
 
       template = zoomreduction(template_raw, scal);//Šg‘åk¬
       template = rota(template, rot);//‰ñ“]
@@ -391,11 +388,8 @@ findPattern( template, image, cx, cy, rotation, scaling )
         scale_all = scal ;
       }
       //printf("mindiff:%d scale:%3.1f rotate:%4.1f posx:%d posy:%d\n", mindiff, scal, rot, posx, posy);
-
     }
-
-    printf("mindiff:%d rotate:%4.1f posx:%d posy:%d\n", mindiff, rot, posx, posy);
-
+    printf("scale:%3.1f loop finished.\n", scal);
   } //loopI‚í‚è
 
   //return‚Ì€”õ
