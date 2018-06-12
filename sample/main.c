@@ -93,7 +93,9 @@ main( argc, argv )
     return(1);
   }
   else{
-    printf("NO_ERROR\n");
+    int a;
+    // エラーなし文
+    // printf("NO_ERROR\n");
   }
   /*
    *  探索した結果を元の探索画像の上に長方形の枠で表示します.
@@ -125,12 +127,12 @@ main( argc, argv )
     printf("processing time:%.2fsec\n",(double)(end-start)/CLOCKS_PER_SEC);
     return(1) ;
   }
-  printf( "result image is saved in %s\n", name_out ) ;
+  // printf( "result image is saved in %s\n", name_out ) ;
 
   end = clock();//時間計測
-  printf("processing time:%.2fsec\n",(double)(end-start)/CLOCKS_PER_SEC);
+  printf("processing time:%.2fsec\n\n",(double)(end-start)/CLOCKS_PER_SEC);
 
-
+/*
   //level1
   double usagi_1[2] = {50, 170};
   double inu_1[2] = {140, 175};
@@ -169,7 +171,7 @@ main( argc, argv )
   double usamimi_3[4] = {250, 92, 1.0, -6};
   double yuurei_3[4] = {111, 170, 1.3, -5};
   double saboten_3[4] = {171, 162, 0.8, 14};
-
+*/
 
   return(0) ;
 }

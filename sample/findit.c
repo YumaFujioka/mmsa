@@ -348,12 +348,12 @@ findPattern( template, image, cx, cy, rotation, scaling )
 
   //変更箇所
 	//-------------探索パラメータ--------------
-  double scal_min = 0.6;//縮小下限
+  double scal_min = 0.4;//縮小下限
   double scal_max = 1.7;//拡大上限
   double scal_increment = 0.1;//刻み幅
 
-  int rot_min = -10;//回転範囲
-  int rot_max = 10;//回転範囲
+  int rot_min = -25;//回転範囲
+  int rot_max = 25;//回転範囲
   int rot_increment = 1;//刻み幅
 	//---------------------------------------
 
@@ -364,7 +364,7 @@ findPattern( template, image, cx, cy, rotation, scaling )
   template_raw = template; //テンプレート画像のオリジナル
 
 	// 元画像のフィルタリング
-	image = g_filter(image);
+	// image = g_filter(image);
 
   int mindiff_all = 0x7fffffff ; //return用の変数
   double posx_all, posy_all, rotate_all, scale_all; //return用の変数
@@ -462,12 +462,15 @@ findPattern( template, image, cx, cy, rotation, scaling )
     rotate_all = rot ;
     scale_all = scal ;
   }
-  printf("pels:%d ", pels);
-  printf("mindiff:%d posx:%d posy:%d(scal:1.0, rot:0)\n", mindiff, posx, posy);
+  // printf("pels:%d ", pels);
+
+	// 詳細結果表示
+  // printf("mindiff:%d posx:%d posy:%d(scal:1.0, rot:0)\n", mindiff, posx, posy);
 
   //大体の場所を確保
   int around_posx = posx;
   int around_posy = posy;
+	// おおまか探索範囲
   int error = 20;
 
   /////////////////大体の場所を確保/////////////
@@ -560,10 +563,12 @@ findPattern( template, image, cx, cy, rotation, scaling )
         rotate_all = rot ;
         scale_all = scal ;
       }
-			printf("pels:%d ", pels);
-      printf("mindiff:%d scale:%3.1f rotate:%4.1f posx:%d posy:%d\n", mindiff, scal, rot, posx, posy);
+			// printf("pels:%d ", pels);
+
+			// 詳細結果表示
+      // printf("mindiff:%d scale:%3.1f rotate:%4.1f posx:%d posy:%d\n", mindiff, scal, rot, posx, posy);
     }
-    printf("scale:%3.1f loop finished.\n", scal);
+    // printf("scale:%3.1f loop finished.\n", scal);
   } //loop終わり
 
 
