@@ -1,9 +1,9 @@
-/* 
+/*
  *
  *	ここで紹介するサンプルプログラムは, テンプレートが探索画像の
  *	中で回転してあったり, 拡大縮小している場合には対応していません．
  *
- *	ご注意: 
+ *	ご注意:
  *	テンプレートには背景部分があり, 探索画像中では背景部分は探索
  *	画像の背景に置き換わっています. したがって, テンプレートの全ての
  *	画素を探索画像中で比較するのではなく, 背景でない部分のみを
@@ -20,7 +20,7 @@
 #include "pnmimg.h"
 #include <math.h>
 
-RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template,int deg)
+RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template, int deg)
 {
 	int    i, j, m, n;
   float    x, y, p, q;
@@ -88,6 +88,8 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template,int deg)
         dr = 255;
       if (dr <   0) dr = 255;
       if (dr > 255) dr = 255;
+			//丸め誤差で背景でなくなる画素への暫定対処
+			if (dr == 254) dr = 255;
       template3->p[i+ys][j+xs].r = dr;
 			//printf("%d\n",dr);
       if ( (m >= -ys) && (m < ys-1) && (n >= -xs) && (n < xs-1) )
@@ -105,6 +107,8 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template,int deg)
         dg = 255;
       if (dg <   0) dg = 255;
       if (dg > 255) dg = 255;
+			//丸め誤差で背景でなくなる画素への暫定対処
+			if (dg == 254) dg = 255;
       template3->p[i+ys][j+xs].g = dg;
       if ( (m >= -ys) && (m < ys-1) && (n >= -xs) && (n < xs-1) )
         db = (int)((1.0-q)*((1.0-p)*template->p[m  +ys][n  +xs].b
@@ -122,16 +126,20 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template,int deg)
         db = 255;
       if (db <   0) db = 255;
       if (db > 255) db = 255;
+			//丸め誤差で背景でなくなる画素への暫定対処
+			if (db == 254) db = 255;
       template3->p[i+ys][j+xs].b = db;
     }
   }
 	//printf("%d\n",dr);
+  // if(deg==1)
+	// writeRGBPackedImage(template3, "tem3.ppm" );
   return template3;
 	freeRGBPackedImage(template3);
 }
 
 
-RGB_PACKED_IMAGE *zoomreduction( RGB_PACKED_IMAGE *template,double scale)
+RGB_PACKED_IMAGE *zoomreduction( RGB_PACKED_IMAGE *template, double scale)
 {
 	/* 縮小 */
 	int xs = template->cols/2;
@@ -177,10 +185,154 @@ RGB_PACKED_IMAGE *zoomreduction( RGB_PACKED_IMAGE *template,double scale)
 	freeRGBPackedImage(template2);
 }
 
+
+// ガウシアンフィルタ
+RGB_PACKED_IMAGE *g_filter( RGB_PACKED_IMAGE *image)
+{
+
+	//フィルター後画像の作成（とりあえず丸々コピー）
+	RGB_PACKED_IMAGE *image_gfilt = allocRGBPackedImage(image->cols, image->rows);
+	image_gfilt = image;
+
+	int i, j, buffer_r, buffer_g, buffer_b, dr, dg, db;
+	// printf("%d, %d", image->cols, image->rows); fflush(stdout);
+
+
+	//端はそのままの値を使うことにする
+	//5*5近傍ガウシアンフィルタを使用
+	for(i=2; i < image->rows - 2; i++){
+		for(j=2; j < image->cols - 2; j++){
+			// printf(); fflush(stdout);
+			// printf("%d,%d:",i, j); fflush(stdout);
+			buffer_r = 	(int)image->p[i-2][j-2].r	*	1
+								+	(int)image->p[i-2][j-1].r	*	4
+								+	(int)image->p[i-2][j].r	*	6
+								+	(int)image->p[i-2][j+1].r	*	4
+								+	(int)image->p[i-2][j+2].r	*	1
+								+	(int)image->p[i-1][j-2].r	*	4
+								+	(int)image->p[i-1][j-1].r	*	16
+								+	(int)image->p[i-1][j].r	*	24
+								+	(int)image->p[i-1][j+1].r	*	16
+								+	(int)image->p[i-1][j+2].r	*	4
+								+	(int)image->p[i][j-2].r	*	6
+								+	(int)image->p[i][j-1].r	*	24
+								+	(int)image->p[i][j].r	*	36
+								+	(int)image->p[i][j+1].r	*	24
+								+	(int)image->p[i][j+2].r	*	6
+								+	(int)image->p[i+1][j-2].r	*	4
+								+	(int)image->p[i+1][j-1].r	*	16
+								+	(int)image->p[i+1][j].r	*	24
+								+	(int)image->p[i+1][j+1].r	*	16
+								+	(int)image->p[i+1][j+2].r	*	4
+								+	(int)image->p[i+2][j-2].r	*	1
+								+	(int)image->p[i+2][j-1].r	*	4
+								+	(int)image->p[i+2][j].r	*	6
+								+	(int)image->p[i+2][j+1].r	*	4
+								+	(int)image->p[i+2][j+2].r	*	1;
+
+			buffer_g = 	(int)image->p[i-2][j-2].g	*	1
+								+	(int)image->p[i-2][j-1].g	*	4
+								+	(int)image->p[i-2][j].g	*	6
+								+	(int)image->p[i-2][j+1].g	*	4
+								+	(int)image->p[i-2][j+2].g	*	1
+								+	(int)image->p[i-1][j-2].g	*	4
+								+	(int)image->p[i-1][j-1].g	*	16
+								+	(int)image->p[i-1][j].g	*	24
+								+	(int)image->p[i-1][j+1].g	*	16
+								+	(int)image->p[i-1][j+2].g	*	4
+								+	(int)image->p[i][j-2].g	*	6
+								+	(int)image->p[i][j-1].g	*	24
+								+	(int)image->p[i][j].g	*	36
+								+	(int)image->p[i][j+1].g	*	24
+								+	(int)image->p[i][j+2].g	*	6
+								+	(int)image->p[i+1][j-2].g	*	4
+								+	(int)image->p[i+1][j-1].g	*	16
+								+	(int)image->p[i+1][j].g	*	24
+								+	(int)image->p[i+1][j+1].g	*	16
+								+	(int)image->p[i+1][j+2].g	*	4
+								+	(int)image->p[i+2][j-2].g	*	1
+								+	(int)image->p[i+2][j-1].g	*	4
+								+	(int)image->p[i+2][j].g	*	6
+								+	(int)image->p[i+2][j+1].g	*	4
+								+	(int)image->p[i+2][j+2].g	*	1;
+
+			buffer_b = 	(int)image->p[i-2][j-2].b	*	1
+								+	(int)image->p[i-2][j-1].b	*	4
+								+	(int)image->p[i-2][j].b	*	6
+								+	(int)image->p[i-2][j+1].b	*	4
+								+	(int)image->p[i-2][j+2].b	*	1
+								+	(int)image->p[i-1][j-2].b	*	4
+								+	(int)image->p[i-1][j-1].b	*	16
+								+	(int)image->p[i-1][j].b	*	24
+								+	(int)image->p[i-1][j+1].b	*	16
+								+	(int)image->p[i-1][j+2].b	*	4
+								+	(int)image->p[i][j-2].b	*	6
+								+	(int)image->p[i][j-1].b	*	24
+								+	(int)image->p[i][j].b	*	36
+								+	(int)image->p[i][j+1].b	*	24
+								+	(int)image->p[i][j+2].b	*	6
+								+	(int)image->p[i+1][j-2].b	*	4
+								+	(int)image->p[i+1][j-1].b	*	16
+								+	(int)image->p[i+1][j].b	*	24
+								+	(int)image->p[i+1][j+1].b	*	16
+								+	(int)image->p[i+1][j+2].b	*	4
+								+	(int)image->p[i+2][j-2].b	*	1
+								+	(int)image->p[i+2][j-1].b	*	4
+								+	(int)image->p[i+2][j].b	*	6
+								+	(int)image->p[i+2][j+1].b	*	4
+								+	(int)image->p[i+2][j+2].b	*	1;
+
+			dr = buffer_r / 256;
+			dg = buffer_g / 256;
+			db = buffer_b / 256;
+
+			// printf ("(%d,%d,%d) ", dr, dg, db);
+
+			if(dr > 254){
+				image_gfilt->p[i][j].r = 254;
+			} else if(dr < 0){
+				image_gfilt->p[i][j].r = 0;
+			} else {
+				image_gfilt->p[i][j].r = dr;
+				// printf("%d,", dr);
+			}
+
+			if(dg > 254){
+				image_gfilt->p[i][j].g = 254;
+			} else if(dg < 0){
+				image_gfilt->p[i][j].g = 0;
+			} else {
+				image_gfilt->p[i][j].g = dg;
+			}
+
+			if(db > 254){
+				image_gfilt->p[i][j].b = 254;
+			} else if(db < 0){
+				image_gfilt->p[i][j].b = 0;
+			} else {
+				image_gfilt->p[i][j].b = db;
+			}
+
+		}
+	}
+  // printf("test "); fflush(stdout);
+	// writeRGBPackedImage( image_gfilt, "filtest.ppm" );
+
+	return image_gfilt;
+
+}
+
+// ----------------- //
+// ----------------- //
+// ここまで前処理関数群 //
+// ----------------- //
+// ----------------- //
+
+
 #ifdef __STDC__
 int
 findPattern( RGB_PACKED_IMAGE *template, RGB_PACKED_IMAGE *image,
-		     double *cx, double *cy, 
+		     double *cx, double *cy,
 		     double *rotation, double *scaling )
 #else
 int
@@ -195,17 +347,24 @@ findPattern( template, image, cx, cy, rotation, scaling )
 {
 
   //変更箇所
-  //ここらへんでloopする
+	//-------------探索パラメータ--------------
   double scal_min = 0.6;//縮小下限
   double scal_max = 1.7;//拡大上限
   double scal_increment = 0.1;//刻み幅
 
-  int rot_min = -25;//回転範囲
-  int rot_max = 20;//回転範囲
-  int rot_increment = 5;//刻み幅
+  int rot_min = -10;//回転範囲
+  int rot_max = 10;//回転範囲
+  int rot_increment = 1;//刻み幅
+	//---------------------------------------
 
+
+
+  //--------------変数宣言など----------------
   RGB_PACKED_IMAGE *template_raw;
-  template_raw = template;
+  template_raw = template; //テンプレート画像のオリジナル
+
+	// 元画像のフィルタリング
+	image = g_filter(image);
 
   int mindiff_all = 0x7fffffff ; //return用の変数
   double posx_all, posy_all, rotate_all, scale_all; //return用の変数
@@ -217,16 +376,21 @@ findPattern( template, image, cx, cy, rotation, scaling )
   int x0, y0, x1, y1 ;
   int diff, pels, dr, dg, db ;
   RGB_PACKED_PIXEL *pixel ;
+  //--------------------------------------
 
 
 
-  
-  ////////////////大体の場所を確保/////////////  
+
+
+
+  ////////////////大体の場所を確保/////////////
 
   scal = 1.0;
   rot = 0;
   template = zoomreduction(template_raw, scal);//拡大縮小
   template = rota(template, rot);//回転
+
+
   /*
    *  テンプレートの中心から見た, テンプレートの左上と右下の座標
    *  (x0,y0) と (x1, y1) をあらかじめ求めておく.
@@ -262,6 +426,7 @@ findPattern( template, image, cx, cy, rotation, scaling )
         if ( pixel->r != 255 || pixel->g != 255 || pixel->b != 255 ) {
     /* テンプレート画素が背景でないことを確認し... */
     pels ++ ;
+
     if (( dr = image->p[dy][dx].r - pixel->r ) < 0 ) dr = -dr ;
     if (( dg = image->p[dy][dx].g - pixel->g ) < 0 ) dg = -dg ;
     if (( db = image->p[dy][dx].b - pixel->b ) < 0 ) db = -db ;
@@ -290,13 +455,14 @@ findPattern( template, image, cx, cy, rotation, scaling )
   }
   //暫定値の更新
   if ( mindiff < mindiff_all ){
-    mindiff_all = mindiff ;
+		// 悪影響の可能性？（後の同条件での計算値と異なっている？）
+		// midiff_all = mindiff ;
     posx_all = posx ;
     posy_all = posy ;
     rotate_all = rot ;
     scale_all = scal ;
   }
-
+  printf("pels:%d ", pels);
   printf("mindiff:%d posx:%d posy:%d(scal:1.0, rot:0)\n", mindiff, posx, posy);
 
   //大体の場所を確保
@@ -306,6 +472,10 @@ findPattern( template, image, cx, cy, rotation, scaling )
 
   /////////////////大体の場所を確保/////////////
 
+
+  // ----------------- //
+	//   本格的な探索開始   //
+	// ----------------- //
 
   //loop始まり
   for (scal = scal_min; scal <= scal_max ; scal += scal_increment){
@@ -342,6 +512,8 @@ findPattern( template, image, cx, cy, rotation, scaling )
            */
           diff = 0 ; /* R,G,B それぞれの画素の差の累計 */
           pels = 0 ; /* 有効な比較を行った画素数 */
+					// pels2 = 0;
+
           pixel = template->data_p ; /* テンプレートデータの先頭画素 */
           for ( dy = yy + y0 ; dy <= yy + y1 ; dy++ ) {
     	if ( dy >= 0 && dy < image->rows ) {
@@ -349,6 +521,7 @@ findPattern( template, image, cx, cy, rotation, scaling )
     	  for ( dx = xx + x0 ; dx <= xx + x1 ; dx++, pixel++ ) {
     	    if ( dx >= 0 && dx < image->cols ) {
     	      /* 探索画像の外(左/右)に出てないことを確認し... */
+						// pels2++;
     	      if ( pixel->r != 255 || pixel->g != 255 || pixel->b != 255 ) {
     		/* テンプレート画素が背景でないことを確認し... */
     		pels ++ ;
@@ -387,20 +560,26 @@ findPattern( template, image, cx, cy, rotation, scaling )
         rotate_all = rot ;
         scale_all = scal ;
       }
-      //printf("mindiff:%d scale:%3.1f rotate:%4.1f posx:%d posy:%d\n", mindiff, scal, rot, posx, posy);
+			printf("pels:%d ", pels);
+      printf("mindiff:%d scale:%3.1f rotate:%4.1f posx:%d posy:%d\n", mindiff, scal, rot, posx, posy);
     }
     printf("scale:%3.1f loop finished.\n", scal);
   } //loop終わり
 
+
+// ----------------- //
+// mainに探索結果を返す //
+// ----------------- //
+
   //returnの準備
   if ( mindiff_all == 0x7fffffff )
-    return( HAS_ERROR ) ; /* 画像間の差が更新されていないので失敗と判断 */  
+    return( HAS_ERROR ) ; /* 画像間の差が更新されていないので失敗と判断 */
     /*
      *  探索の結果を戻り値の引数に格納
      */
   *cx = (double)posx_all ;
   *cy = (double)posy_all ;
-  *rotation = rotate_all ; 
+  *rotation = rotate_all ;
   *scaling = scale_all ;
   return( NO_ERROR ) ;
 

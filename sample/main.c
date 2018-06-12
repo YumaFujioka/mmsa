@@ -1,12 +1,12 @@
-/* 
+/*
  *	このプログラムは, あらかじめ与えられた画像パターン(以下この画像の
  *	ことをテンプレート画像と呼びます)を, 別の大きな画像(以下この画像のこと
  *	を探索対象画像と呼びます)から探します. 見付かった結果は, 探索対象画像の
- *	上にテンプレート画像の外枠に相当する長方形を重ね書きすることで, 
- *	見えるようにします. 
+ *	上にテンプレート画像の外枠に相当する長方形を重ね書きすることで,
+ *	見えるようにします.
  *
  *	画像は, netpbm (pbmplus) で用いられるカラー画像フォーマット `ppm' を
- *	用いています. 
+ *	用いています.
  *
  */
 #include <stdlib.h>
@@ -51,8 +51,8 @@ main( argc, argv )
   int icx, icy, irot, isx, isy ;
   int ret ;
   extern int findPattern __P(( RGB_PACKED_IMAGE*, RGB_PACKED_IMAGE*, double*, double*, double*, double* )) ;
-  extern RGB_PACKED_IMAGE* zoomreduction(RGB_PACKED_IMAGE*,double);
-  extern RGB_PACKED_IMAGE* rota(RGB_PACKED_IMAGE*,int);
+  // extern RGB_PACKED_IMAGE* zoomreduction(RGB_PACKED_IMAGE*,double);
+  // extern RGB_PACKED_IMAGE* rota(RGB_PACKED_IMAGE*,int);
 
   if ( argc > 1 ) name_tmp = argv[1] ;
   if ( argc > 2 ) name_img = argv[2] ;
@@ -85,7 +85,7 @@ main( argc, argv )
   //template = rota(template,20);//回転する
   //template = zoomreduction(template,1.5); //拡大縮小する
 
-  ret = findPattern( template, image, 
+  ret = findPattern( template, image,
           &cx, &cy, &rotation, &scaling ) ;
   if ( ret == HAS_ERROR ) {
     printError( "findPattern" ) ;
