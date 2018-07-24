@@ -7,6 +7,7 @@ from os import path
 import numpy as np
 import csv
 import glob
+import LogisticReg
 
 # --------------------
 # **ファイル管理**
@@ -36,4 +37,7 @@ if __name__ == '__main__':
             reader = csv.reader(f)
             dataset.append( [[float(x[0]), float(x[1]), int(x[2])] for x in reader] )
 
-    print( MakeListCSVasXY(dataset[0]) )
+    # print( MakeListCSVasXY(dataset[0]) )
+    print(dataset[0])
+    LogR = LogisticReg.LogisticReg(MakeListCSVasXY(dataset))
+    LogR.fitting(MakeListCSVasXY(dataset[0]))

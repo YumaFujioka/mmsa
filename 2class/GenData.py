@@ -28,7 +28,7 @@ if __name__ == '__main__':
     A = np.array(np.random.multivariate_normal(mu_A, cov_A, data_num))
     A_out = np.hstack((A, np.ones((500, 1), dtype="int8")))
     B = np.array(np.random.multivariate_normal(mu_B, cov_B, data_num))
-    B_out = np.hstack((A, np.zeros((500, 1), dtype="int8")))
+    B_out = np.hstack((B, np.zeros((500, 1), dtype="int8")))
 
     #  データシャッフル、クラスラベルの調整、５分割
     output_list = random.sample( np.vstack( (A_out, B_out) ).tolist() , len(np.vstack( (A_out, B_out) ).tolist()) )
