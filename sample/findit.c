@@ -1,17 +1,17 @@
 /*
  *
- *	‚±‚±‚ÅÐ‰î‚·‚éƒTƒ“ƒvƒ‹ƒvƒƒOƒ‰ƒ€‚Í, ƒeƒ“ƒvƒŒ[ƒg‚ª’Tõ‰æ‘œ‚Ì
- *	’†‚Å‰ñ“]‚µ‚Ä‚ ‚Á‚½‚è, Šg‘åk¬‚µ‚Ä‚¢‚éê‡‚É‚Í‘Î‰ž‚µ‚Ä‚¢‚Ü‚¹‚ñD
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ÅÐ‰î‚·ï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½vï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½æ‘œï¿½ï¿½
+ *	ï¿½ï¿½ï¿½Å‰ï¿½ï¿½]ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½gï¿½ï¿½ï¿½kï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚Í‘Î‰ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½D
  *
- *	‚²’ˆÓ:
- *	ƒeƒ“ƒvƒŒ[ƒg‚É‚Í”wŒi•”•ª‚ª‚ ‚è, ’Tõ‰æ‘œ’†‚Å‚Í”wŒi•”•ª‚Í’Tõ
- *	‰æ‘œ‚Ì”wŒi‚É’u‚«Š·‚í‚Á‚Ä‚¢‚Ü‚·. ‚µ‚½‚ª‚Á‚Ä, ƒeƒ“ƒvƒŒ[ƒg‚Ì‘S‚Ä‚Ì
- *	‰æ‘f‚ð’Tõ‰æ‘œ’†‚Å”äŠr‚·‚é‚Ì‚Å‚Í‚È‚­, ”wŒi‚Å‚È‚¢•”•ª‚Ì‚Ý‚ð
- *	”äŠr‚Ì‘ÎÛ‚Æ‚·‚×‚«‚Å‚·. ‚±‚ÌƒRƒ“ƒeƒXƒg‚Å‚Í, ”wŒiF‚ðŠ®‘S‚È”’
- *	(R,G,B)=(255,255,255) ‚Å’è‹`‚µ, ƒeƒ“ƒvƒŒ[ƒg‚Ì“à•”‚É‚Í‚±‚ÌF‚ª
- *	Œ»‚ê‚È‚¢—l‚É‚µ‚Ä‚ ‚è‚Ü‚·‚Ì‚Å, ‚±‚Ì’mŽ¯‚ð‘O’ñ‚É‚µ‚½ƒAƒ‹ƒSƒŠƒYƒ€‚ð
- *	ì¬‚µ‚Ä‚­‚¾‚³‚¢. ˆÈ‰º‚Ì, ƒTƒ“ƒvƒ‹ƒvƒƒOƒ‰ƒ€‚Å‚Í’l(255,255,255)‚ð
- *	Ž‚Â‰æ‘f‚ð don't care ‚É‚·‚é‚æ‚¤‚ÈH•v‚ª‚È‚³‚ê‚Ä‚¢‚Ü‚·.
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:
+ *	ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½É‚Í”wï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Tï¿½ï¿½ï¿½æ‘œï¿½ï¿½ï¿½Å‚Í”wï¿½iï¿½ï¿½ï¿½ï¿½ï¿½Í’Tï¿½ï¿½
+ *	ï¿½æ‘œï¿½Ì”wï¿½iï¿½É’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Ì‘Sï¿½Ä‚ï¿½
+ *	ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½æ‘œï¿½ï¿½ï¿½Å”ï¿½ï¿½rï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚Í‚È‚ï¿½, ï¿½wï¿½iï¿½Å‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Ý‚ï¿½
+ *	ï¿½ï¿½ï¿½rï¿½Ì‘ÎÛ‚Æ‚ï¿½ï¿½×‚ï¿½ï¿½Å‚ï¿½. ï¿½ï¿½ï¿½ÌƒRï¿½ï¿½ï¿½eï¿½Xï¿½gï¿½Å‚ï¿½, ï¿½wï¿½iï¿½Fï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½È”ï¿½
+ *	(R,G,B)=(255,255,255) ï¿½Å’ï¿½ï¿½`ï¿½ï¿½, ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Ì“ï¿½ï¿½ï¿½ï¿½É‚Í‚ï¿½ï¿½ÌFï¿½ï¿½
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½lï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Ì‚ï¿½, ï¿½ï¿½ï¿½Ì’mï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½Yï¿½ï¿½ï¿½ï¿½
+ *	ï¿½ì¬ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½È‰ï¿½ï¿½ï¿½, ï¿½Tï¿½ï¿½ï¿½vï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Å‚Í’l(255,255,255)ï¿½ï¿½
+ *	ï¿½ï¿½ï¿½Â‰ï¿½ï¿½fï¿½ï¿½ don't care ï¿½É‚ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½ÈHï¿½vï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½.
  */
 #include <stdlib.h>
 #include <stdio.h>
@@ -88,7 +88,7 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template, int deg)
         dr = 255;
       if (dr <   0) dr = 255;
       if (dr > 255) dr = 255;
-			//ŠÛ‚ßŒë·‚Å”wŒi‚Å‚È‚­‚È‚é‰æ‘f‚Ö‚ÌŽb’è‘Îˆ
+			//ï¿½Û‚ßŒë·ï¿½Å”wï¿½iï¿½Å‚È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½fï¿½Ö‚ÌŽbï¿½ï¿½ï¿½Îï¿½
 			if (dr == 254) dr = 255;
       template3->p[i+ys][j+xs].r = dr;
 			//printf("%d\n",dr);
@@ -107,7 +107,7 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template, int deg)
         dg = 255;
       if (dg <   0) dg = 255;
       if (dg > 255) dg = 255;
-			//ŠÛ‚ßŒë·‚Å”wŒi‚Å‚È‚­‚È‚é‰æ‘f‚Ö‚ÌŽb’è‘Îˆ
+			//ï¿½Û‚ßŒë·ï¿½Å”wï¿½iï¿½Å‚È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½fï¿½Ö‚ÌŽbï¿½ï¿½ï¿½Îï¿½
 			if (dg == 254) dg = 255;
       template3->p[i+ys][j+xs].g = dg;
       if ( (m >= -ys) && (m < ys-1) && (n >= -xs) && (n < xs-1) )
@@ -126,7 +126,7 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template, int deg)
         db = 255;
       if (db <   0) db = 255;
       if (db > 255) db = 255;
-			//ŠÛ‚ßŒë·‚Å”wŒi‚Å‚È‚­‚È‚é‰æ‘f‚Ö‚ÌŽb’è‘Îˆ
+			//ï¿½Û‚ßŒë·ï¿½Å”wï¿½iï¿½Å‚È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½fï¿½Ö‚ÌŽbï¿½ï¿½ï¿½Îï¿½
 			if (db == 254) db = 255;
       template3->p[i+ys][j+xs].b = db;
     }
@@ -141,7 +141,7 @@ RGB_PACKED_IMAGE *rota( RGB_PACKED_IMAGE *template, int deg)
 
 RGB_PACKED_IMAGE *zoomreduction( RGB_PACKED_IMAGE *template, double scale)
 {
-	/* k¬ */
+	/* ï¿½kï¿½ï¿½ */
 	int xs = template->cols/2;
 	int ys = template->rows/2;
 	//double scale = 1.2;
@@ -186,11 +186,11 @@ RGB_PACKED_IMAGE *zoomreduction( RGB_PACKED_IMAGE *template, double scale)
 }
 
 
-// ƒKƒEƒVƒAƒ“ƒtƒBƒ‹ƒ^
+// ï¿½Kï¿½Eï¿½Vï¿½Aï¿½ï¿½ï¿½tï¿½Bï¿½ï¿½ï¿½^
 RGB_PACKED_IMAGE *g_filter( RGB_PACKED_IMAGE *image)
 {
 
-	//ƒtƒBƒ‹ƒ^[Œã‰æ‘œ‚Ìì¬i‚Æ‚è‚ ‚¦‚¸ŠÛXƒRƒs[j
+	//ï¿½tï¿½Bï¿½ï¿½ï¿½^ï¿½[ï¿½ï¿½ï¿½æ‘œï¿½Ìì¬ï¿½iï¿½Æ‚è‚ ï¿½ï¿½ï¿½ï¿½ï¿½ÛXï¿½Rï¿½sï¿½[ï¿½j
 	RGB_PACKED_IMAGE *image_gfilt = allocRGBPackedImage(image->cols, image->rows);
 	image_gfilt = image;
 
@@ -198,8 +198,8 @@ RGB_PACKED_IMAGE *g_filter( RGB_PACKED_IMAGE *image)
 	// printf("%d, %d", image->cols, image->rows); fflush(stdout);
 
 
-	//’[‚Í‚»‚Ì‚Ü‚Ü‚Ì’l‚ðŽg‚¤‚±‚Æ‚É‚·‚é
-	//5*5‹ß–TƒKƒEƒVƒAƒ“ƒtƒBƒ‹ƒ^‚ðŽg—p
+	//ï¿½[ï¿½Í‚ï¿½ï¿½Ì‚Ü‚Ü‚Ì’lï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Æ‚É‚ï¿½ï¿½ï¿½
+	//5*5ï¿½ß–Tï¿½Kï¿½Eï¿½Vï¿½Aï¿½ï¿½ï¿½tï¿½Bï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½gï¿½p
 	for(i=2; i < image->rows - 2; i++){
 		for(j=2; j < image->cols - 2; j++){
 			// printf(); fflush(stdout);
@@ -324,7 +324,7 @@ RGB_PACKED_IMAGE *g_filter( RGB_PACKED_IMAGE *image)
 
 // ----------------- //
 // ----------------- //
-// ‚±‚±‚Ü‚Å‘Oˆ—ŠÖ”ŒQ //
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Å‘Oï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½ï¿½Q //
 // ----------------- //
 // ----------------- //
 
@@ -346,6 +346,7 @@ findPattern( template, image, cx, cy, rotation, scaling )
 #endif
 {
 
+<<<<<<< HEAD
   //•ÏX‰ÓŠ
 	//-------------’Tõƒpƒ‰ƒ[ƒ^--------------
   double scal_min = 0.9;//k¬‰ºŒÀ
@@ -355,19 +356,34 @@ findPattern( template, image, cx, cy, rotation, scaling )
   int rot_min = -10;//‰ñ“]”ÍˆÍ
   int rot_max = 10;//‰ñ“]”ÍˆÍ
   int rot_increment = 1;//‚Ý•
+=======
+  //ï¿½ÏXï¿½Óï¿½
+	//-------------ï¿½Tï¿½ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^--------------
+  double scal_min = 0.4;//ï¿½kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  double scal_max = 1.7;//ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  double scal_increment = 0.1;//ï¿½ï¿½ï¿½Ý•ï¿½
+
+  int rot_min = -25;//ï¿½ï¿½ï¿½]ï¿½Íˆï¿½
+  int rot_max = 25;//ï¿½ï¿½ï¿½]ï¿½Íˆï¿½
+  int rot_increment = 1;//ï¿½ï¿½ï¿½Ý•ï¿½
+>>>>>>> 21cc0f92728e518a583aa786550d4e2f0e7beff4
 	//---------------------------------------
 
 
 
-  //--------------•Ï”éŒ¾‚È‚Ç----------------
+  //--------------ï¿½Ïï¿½ï¿½éŒ¾ï¿½È‚ï¿½----------------
   RGB_PACKED_IMAGE *template_raw;
-  template_raw = template; //ƒeƒ“ƒvƒŒ[ƒg‰æ‘œ‚ÌƒIƒŠƒWƒiƒ‹
+  template_raw = template; //ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½æ‘œï¿½ÌƒIï¿½ï¿½ï¿½Wï¿½iï¿½ï¿½
 
+<<<<<<< HEAD
 	// Œ³‰æ‘œ‚ÌƒtƒBƒ‹ƒ^ƒŠƒ“ƒO
+=======
+	// ï¿½ï¿½ï¿½æ‘œï¿½Ìƒtï¿½Bï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½O
+>>>>>>> 21cc0f92728e518a583aa786550d4e2f0e7beff4
 	image = g_filter(image);
 
-  int mindiff_all = 0x7fffffff ; //return—p‚Ì•Ï”
-  double posx_all, posy_all, rotate_all, scale_all; //return—p‚Ì•Ï”
+  int mindiff_all = 0x7fffffff ; //returnï¿½pï¿½Ì•Ïï¿½
+  double posx_all, posy_all, rotate_all, scale_all; //returnï¿½pï¿½Ì•Ïï¿½
 
   int mindiff ;
   int posx, posy ;
@@ -383,50 +399,50 @@ findPattern( template, image, cx, cy, rotation, scaling )
 
 
 
-  ////////////////‘å‘Ì‚ÌêŠ‚ðŠm•Û/////////////
+  ////////////////ï¿½ï¿½ï¿½Ì‚ÌêŠï¿½ï¿½ï¿½mï¿½ï¿½/////////////
 
   scal = 1.0;
   rot = 0;
-  template = zoomreduction(template_raw, scal);//Šg‘åk¬
-  template = rota(template, rot);//‰ñ“]
+  template = zoomreduction(template_raw, scal);//ï¿½gï¿½ï¿½ï¿½kï¿½ï¿½
+  template = rota(template, rot);//ï¿½ï¿½ï¿½]
 
 
   /*
-   *  ƒeƒ“ƒvƒŒ[ƒg‚Ì’†S‚©‚çŒ©‚½, ƒeƒ“ƒvƒŒ[ƒg‚Ì¶ã‚Æ‰E‰º‚ÌÀ•W
-   *  (x0,y0) ‚Æ (x1, y1) ‚ð‚ ‚ç‚©‚¶‚ß‹‚ß‚Ä‚¨‚­.
+   *  ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Ì’ï¿½ï¿½Sï¿½ï¿½ï¿½çŒ©ï¿½ï¿½, ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Ìï¿½ï¿½ï¿½ï¿½Æ‰Eï¿½ï¿½ï¿½Ìï¿½ï¿½W
+   *  (x0,y0) ï¿½ï¿½ (x1, y1) ï¿½ï¿½ï¿½ï¿½ï¿½ç‚©ï¿½ï¿½ï¿½ß‹ï¿½ï¿½ß‚Ä‚ï¿½ï¿½ï¿½.
    */
   x0 = -( template->cols / 2 ) ;
   y0 = -( template->rows / 2 ) ;
   x1 = ( template->cols - 1 )/ 2 ;
   y1 = ( template->rows - 1 )/ 2 ;
   /*
-   *  ƒeƒ“ƒvƒŒ[ƒg‚ð“–‚Ä‚Í‚ß‚éˆÊ’u‚ð’Tõ‰æ‘œ‚Ì‘S”ÍˆÍ‚ÉˆÚ“®‚³‚¹‚È‚ª‚ç,
-   *  ƒeƒ“ƒvƒŒ[ƒg‚Æ’Tõ‰æ‘œ‚Ì·‚ª‚à‚Á‚Æ‚à¬‚³‚¢ˆÊ’u (posx, posy) ‚ð
-   *  Œ©•t‚¯‚é.
+   *  ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ð“–‚Ä‚Í‚ß‚ï¿½ï¿½Ê’uï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½æ‘œï¿½Ì‘Sï¿½ÍˆÍ‚ÉˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½,
+   *  ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Æ’Tï¿½ï¿½ï¿½æ‘œï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’u (posx, posy) ï¿½ï¿½
+   *  ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½.
    */
   mindiff = 0x7fffffff ;
   posx=0; posy=0;
 
 
   //for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
-    //for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) { // •ÏX‘Oitemplate‚Ì’†S‚ðimage“à‚Å‘S’Tõj
+    //for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) { // ï¿½ÏXï¿½Oï¿½itemplateï¿½Ì’ï¿½ï¿½Sï¿½ï¿½imageï¿½ï¿½ï¿½Å‘Sï¿½Tï¿½ï¿½ï¿½j
   for ( yy = -y0 ; yy < image->rows - y1 ; yy++ ) {
-    for ( xx = -x0 ; xx < image->cols - x1 ; xx++ ) { // •ÏXŒãitemplate‚ªimage“à‚ÉŠ®‘S‚ÉŠÜ‚Ü‚ê‚é‘O’ñ‚Å‘S’Tõj
+    for ( xx = -x0 ; xx < image->cols - x1 ; xx++ ) { // ï¿½ÏXï¿½ï¿½ï¿½itemplateï¿½ï¿½imageï¿½ï¿½ï¿½ÉŠï¿½ï¿½Sï¿½ÉŠÜ‚Ü‚ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Å‘Sï¿½Tï¿½ï¿½ï¿½j
       /*
-       *  ‚ ‚éˆÊ’u (xx, yy) ‚É‚¨‚¯‚é‚Ó‚½‚Â‚Ì‰æ‘œŠÔ‚Ì·‚ð‹‚ß‚é.
-       *  ‰æ‘œ‚Ì·‚Æ‚Í, ‚±‚±‚Å‚Í R,G,B ’l‚Ì·‚Ìâ‘Î’l‚Ì—ÝÏ‚ð—p‚¢‚½.
+       *  ï¿½ï¿½ï¿½ï¿½ï¿½Ê’u (xx, yy) ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó‚ï¿½ï¿½Â‚Ì‰æ‘œï¿½Ô‚Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½.
+       *  ï¿½æ‘œï¿½Ìï¿½ï¿½Æ‚ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ R,G,B ï¿½lï¿½Ìï¿½ï¿½Ìï¿½ï¿½Î’lï¿½Ì—ÝÏ‚ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½.
        */
-      diff = 0 ; /* R,G,B ‚»‚ê‚¼‚ê‚Ì‰æ‘f‚Ì·‚Ì—ÝŒv */
-      pels = 0 ; /* —LŒø‚È”äŠr‚ðs‚Á‚½‰æ‘f” */
-      pixel = template->data_p ; /* ƒeƒ“ƒvƒŒ[ƒgƒf[ƒ^‚Ìæ“ª‰æ‘f */
+      diff = 0 ; /* R,G,B ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½ï¿½Ì‰ï¿½ï¿½fï¿½Ìï¿½ï¿½Ì—ÝŒv */
+      pels = 0 ; /* ï¿½Lï¿½ï¿½ï¿½È”ï¿½ï¿½rï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ */
+      pixel = template->data_p ; /* ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½fï¿½[ï¿½^ï¿½Ìæ“ªï¿½ï¿½ï¿½f */
       for ( dy = yy + y0 ; dy <= yy + y1 ; dy++ ) {
   if ( dy >= 0 && dy < image->rows ) {
-    /* ’Tõ‰æ‘œ‚ÌŠO(ã/‰º)‚Éo‚Ä‚È‚¢‚±‚Æ‚ðŠm”F‚µ... */
+    /* ï¿½Tï¿½ï¿½ï¿½æ‘œï¿½ÌŠO(ï¿½ï¿½/ï¿½ï¿½)ï¿½Éoï¿½Ä‚È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½mï¿½Fï¿½ï¿½... */
     for ( dx = xx + x0 ; dx <= xx + x1 ; dx++, pixel++ ) {
       if ( dx >= 0 && dx < image->cols ) {
-        /* ’Tõ‰æ‘œ‚ÌŠO(¶/‰E)‚Éo‚Ä‚È‚¢‚±‚Æ‚ðŠm”F‚µ... */
+        /* ï¿½Tï¿½ï¿½ï¿½æ‘œï¿½ÌŠO(ï¿½ï¿½/ï¿½E)ï¿½Éoï¿½Ä‚È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½mï¿½Fï¿½ï¿½... */
         if ( pixel->r != 255 || pixel->g != 255 || pixel->b != 255 ) {
-    /* ƒeƒ“ƒvƒŒ[ƒg‰æ‘f‚ª”wŒi‚Å‚È‚¢‚±‚Æ‚ðŠm”F‚µ... */
+    /* ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½fï¿½ï¿½ï¿½wï¿½iï¿½Å‚È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½mï¿½Fï¿½ï¿½... */
     pels ++ ;
 
     if (( dr = image->p[dy][dx].r - pixel->r ) < 0 ) dr = -dr ;
@@ -438,14 +454,14 @@ findPattern( template, image, cx, cy, rotation, scaling )
     }
   }
   else {
-    /* ƒeƒ“ƒvƒŒ[ƒg‚ðˆês“Ç‚Ý”ò‚Î‚µ‚½‚Ì‚Å, ƒ|ƒCƒ“ƒ^‚ð’²®‚·‚é */
+    /* ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½sï¿½Ç‚Ý”ï¿½ï¿½Î‚ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½, ï¿½|ï¿½Cï¿½ï¿½ï¿½^ï¿½ð’²ï¿½ï¿½ï¿½ï¿½ï¿½ */
     pixel += template->cols ;
   }
       }
-      if ( pels ) { /* —LŒø‚É·‚ª—ÝÏ‚³‚ê‚Ä‚¢‚½ê‡‚É‚Í... */
-  diff /= pels ; /* ‰æ‘f‚Ì·‚Ì—ÝŒv‚ð—LŒø‰æ‘f”‚ÅŠ„‚Á‚Ä³‹K‰»‚·‚é */
+      if ( pels ) { /* ï¿½Lï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ÝÏ‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚ï¿½... */
+  diff /= pels ; /* ï¿½ï¿½ï¿½fï¿½Ìï¿½ï¿½Ì—ÝŒvï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ÅŠï¿½ï¿½ï¿½ï¿½Äï¿½ï¿½Kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
   /*
-   *  ‚±‚ê‚Ü‚Å‚ÌŒ‹‰Ê‚Æ”äŠr‚µ, ·‚ª¬‚³‚¯‚ê‚Î‚»‚ÌˆÊ’u‚ðÌ—p‚·‚é.
+   *  ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Å‚ÌŒï¿½ï¿½Ê‚Æ”ï¿½ï¿½rï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î‚ï¿½ï¿½ÌˆÊ’uï¿½ï¿½ï¿½Ì—pï¿½ï¿½ï¿½ï¿½.
    */
   if ( diff < mindiff ) {
     mindiff = diff ;
@@ -455,9 +471,9 @@ findPattern( template, image, cx, cy, rotation, scaling )
       }
     }
   }
-  //Žb’è’l‚ÌXV
+  //ï¿½bï¿½ï¿½ï¿½lï¿½ÌXï¿½V
   if ( mindiff < mindiff_all ){
-		// ˆ«‰e‹¿‚Ì‰Â”\«HiŒã‚Ì“¯ðŒ‚Å‚ÌŒvŽZ’l‚ÆˆÙ‚È‚Á‚Ä‚¢‚éHj
+		// ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½Ì‰Â”\ï¿½ï¿½ï¿½Hï¿½iï¿½ï¿½ï¿½Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ÌŒvï¿½Zï¿½lï¿½ÆˆÙ‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Hï¿½j
 		// midiff_all = mindiff ;
     posx_all = posx ;
     posy_all = posy ;
@@ -466,32 +482,37 @@ findPattern( template, image, cx, cy, rotation, scaling )
   }
   // printf("pels:%d ", pels);
 
+<<<<<<< HEAD
 	// Ú×Œ‹‰Ê•\Ž¦
   printf("mindiff:%d posx:%d posy:%d(scal:1.0, rot:0)\n", mindiff, posx, posy);
+=======
+	// ï¿½Ú×Œï¿½ï¿½Ê•\ï¿½ï¿½
+  // printf("mindiff:%d posx:%d posy:%d(scal:1.0, rot:0)\n", mindiff, posx, posy);
+>>>>>>> 21cc0f92728e518a583aa786550d4e2f0e7beff4
 
-  //‘å‘Ì‚ÌêŠ‚ðŠm•Û
+  //ï¿½ï¿½ï¿½Ì‚ÌêŠï¿½ï¿½ï¿½mï¿½ï¿½
   int around_posx = posx;
   int around_posy = posy;
-	// ‚¨‚¨‚Ü‚©’Tõ”ÍˆÍ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Tï¿½ï¿½ï¿½Íˆï¿½
   int error = 20;
 
-  /////////////////‘å‘Ì‚ÌêŠ‚ðŠm•Û/////////////
+  /////////////////ï¿½ï¿½ï¿½Ì‚ÌêŠï¿½ï¿½ï¿½mï¿½ï¿½/////////////
 
 
   // ----------------- //
-	//   –{Ši“I‚È’TõŠJŽn   //
+	//   ï¿½{ï¿½iï¿½Iï¿½È’Tï¿½ï¿½ï¿½Jï¿½n   //
 	// ----------------- //
 
-  //loopŽn‚Ü‚è
+  //loopï¿½nï¿½Ü‚ï¿½
   for (scal = scal_min; scal <= scal_max ; scal += scal_increment){
     for (rot = rot_min; rot <= rot_max ; rot += rot_increment){
 
-      template = zoomreduction(template_raw, scal);//Šg‘åk¬
-      template = rota(template, rot);//‰ñ“]
+      template = zoomreduction(template_raw, scal);//ï¿½gï¿½ï¿½ï¿½kï¿½ï¿½
+      template = rota(template, rot);//ï¿½ï¿½ï¿½]
 
       /*
-       *  ƒeƒ“ƒvƒŒ[ƒg‚Ì’†S‚©‚çŒ©‚½, ƒeƒ“ƒvƒŒ[ƒg‚Ì¶ã‚Æ‰E‰º‚ÌÀ•W
-       *  (x0,y0) ‚Æ (x1, y1) ‚ð‚ ‚ç‚©‚¶‚ß‹‚ß‚Ä‚¨‚­.
+       *  ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Ì’ï¿½ï¿½Sï¿½ï¿½ï¿½çŒ©ï¿½ï¿½, ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Ìï¿½ï¿½ï¿½ï¿½Æ‰Eï¿½ï¿½ï¿½Ìï¿½ï¿½W
+       *  (x0,y0) ï¿½ï¿½ (x1, y1) ï¿½ï¿½ï¿½ï¿½ï¿½ç‚©ï¿½ï¿½ï¿½ß‹ï¿½ï¿½ß‚Ä‚ï¿½ï¿½ï¿½.
        */
       x0 = -( template->cols / 2 ) ;
       y0 = -( template->rows / 2 ) ;
@@ -499,36 +520,43 @@ findPattern( template, image, cx, cy, rotation, scaling )
       y1 = ( template->rows - 1 )/ 2 ;
 
       /*
-       *  ƒeƒ“ƒvƒŒ[ƒg‚ð“–‚Ä‚Í‚ß‚éˆÊ’u‚ð’Tõ‰æ‘œ‚Ì‘S”ÍˆÍ‚ÉˆÚ“®‚³‚¹‚È‚ª‚ç,
-       *  ƒeƒ“ƒvƒŒ[ƒg‚Æ’Tõ‰æ‘œ‚Ì·‚ª‚à‚Á‚Æ‚à¬‚³‚¢ˆÊ’u (posx, posy) ‚ð
-       *  Œ©•t‚¯‚é.
+       *  ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ð“–‚Ä‚Í‚ß‚ï¿½ï¿½Ê’uï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½æ‘œï¿½Ì‘Sï¿½ÍˆÍ‚ÉˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½,
+       *  ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Æ’Tï¿½ï¿½ï¿½æ‘œï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’u (posx, posy) ï¿½ï¿½
+       *  ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½.
        */
       mindiff = 0x7fffffff ;
       posx=0; posy=0;
+<<<<<<< HEAD
       // for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
         // for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) { // •ÏX‘Oitemplate‚Ì’†S‚ðimage“à‚Å‘S’Tõj
       // for ( yy = -y0 ; yy < image->rows - y1 ; yy++ ) {
         // for ( xx = -x0 ; xx < image->cols - x1 ; xx++ ) { // •ÏXŒãitemplate‚ªimage“à‚ÉŠ®‘S‚ÉŠÜ‚Ü‚ê‚é‘O’ñ‚Å‘S’Tõj
+=======
+      //for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
+        //for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) { // ï¿½ÏXï¿½Oï¿½itemplateï¿½Ì’ï¿½ï¿½Sï¿½ï¿½imageï¿½ï¿½ï¿½Å‘Sï¿½Tï¿½ï¿½ï¿½j
+      //for ( yy = -y0 ; yy < image->rows - y1 ; yy++ ) {
+        //for ( xx = -x0 ; xx < image->cols - x1 ; xx++ ) { // ï¿½ÏXï¿½ï¿½ï¿½itemplateï¿½ï¿½imageï¿½ï¿½ï¿½ÉŠï¿½ï¿½Sï¿½ÉŠÜ‚Ü‚ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Å‘Sï¿½Tï¿½ï¿½ï¿½j
+>>>>>>> 21cc0f92728e518a583aa786550d4e2f0e7beff4
       for ( yy = around_posy - error ; yy < around_posy + error ; yy++ ) {
-        for ( xx = around_posx - error ; xx < around_posx + error ; xx++ ) { // •ÏXŒãi‘å‘ÌŒŸ“¢‚ð‚Â‚¯‚Ä’Tõj
+        for ( xx = around_posx - error ; xx < around_posx + error ; xx++ ) { // ï¿½ÏXï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ÌŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½Ä’Tï¿½ï¿½ï¿½j
           /*
-           *  ‚ ‚éˆÊ’u (xx, yy) ‚É‚¨‚¯‚é‚Ó‚½‚Â‚Ì‰æ‘œŠÔ‚Ì·‚ð‹‚ß‚é.
-           *  ‰æ‘œ‚Ì·‚Æ‚Í, ‚±‚±‚Å‚Í R,G,B ’l‚Ì·‚Ìâ‘Î’l‚Ì—ÝÏ‚ð—p‚¢‚½.
+           *  ï¿½ï¿½ï¿½ï¿½ï¿½Ê’u (xx, yy) ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó‚ï¿½ï¿½Â‚Ì‰æ‘œï¿½Ô‚Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½.
+           *  ï¿½æ‘œï¿½Ìï¿½ï¿½Æ‚ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ R,G,B ï¿½lï¿½Ìï¿½ï¿½Ìï¿½ï¿½Î’lï¿½Ì—ÝÏ‚ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½.
            */
-          diff = 0 ; /* R,G,B ‚»‚ê‚¼‚ê‚Ì‰æ‘f‚Ì·‚Ì—ÝŒv */
-          pels = 0 ; /* —LŒø‚È”äŠr‚ðs‚Á‚½‰æ‘f” */
+          diff = 0 ; /* R,G,B ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½ï¿½Ì‰ï¿½ï¿½fï¿½Ìï¿½ï¿½Ì—ÝŒv */
+          pels = 0 ; /* ï¿½Lï¿½ï¿½ï¿½È”ï¿½ï¿½rï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ */
 					// pels2 = 0;
 
-          pixel = template->data_p ; /* ƒeƒ“ƒvƒŒ[ƒgƒf[ƒ^‚Ìæ“ª‰æ‘f */
+          pixel = template->data_p ; /* ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½fï¿½[ï¿½^ï¿½Ìæ“ªï¿½ï¿½ï¿½f */
           for ( dy = yy + y0 ; dy <= yy + y1 ; dy++ ) {
     	if ( dy >= 0 && dy < image->rows ) {
-    	  /* ’Tõ‰æ‘œ‚ÌŠO(ã/‰º)‚Éo‚Ä‚È‚¢‚±‚Æ‚ðŠm”F‚µ... */
+    	  /* ï¿½Tï¿½ï¿½ï¿½æ‘œï¿½ÌŠO(ï¿½ï¿½/ï¿½ï¿½)ï¿½Éoï¿½Ä‚È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½mï¿½Fï¿½ï¿½... */
     	  for ( dx = xx + x0 ; dx <= xx + x1 ; dx++, pixel++ ) {
     	    if ( dx >= 0 && dx < image->cols ) {
-    	      /* ’Tõ‰æ‘œ‚ÌŠO(¶/‰E)‚Éo‚Ä‚È‚¢‚±‚Æ‚ðŠm”F‚µ... */
+    	      /* ï¿½Tï¿½ï¿½ï¿½æ‘œï¿½ÌŠO(ï¿½ï¿½/ï¿½E)ï¿½Éoï¿½Ä‚È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½mï¿½Fï¿½ï¿½... */
 						// pels2++;
     	      if ( pixel->r != 255 || pixel->g != 255 || pixel->b != 255 ) {
-    		/* ƒeƒ“ƒvƒŒ[ƒg‰æ‘f‚ª”wŒi‚Å‚È‚¢‚±‚Æ‚ðŠm”F‚µ... */
+    		/* ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½fï¿½ï¿½ï¿½wï¿½iï¿½Å‚È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½mï¿½Fï¿½ï¿½... */
     		pels ++ ;
     		if (( dr = image->p[dy][dx].r - pixel->r ) < 0 ) dr = -dr ;
     		if (( dg = image->p[dy][dx].g - pixel->g ) < 0 ) dg = -dg ;
@@ -539,14 +567,14 @@ findPattern( template, image, cx, cy, rotation, scaling )
     	  }
     	}
     	else {
-    	  /* ƒeƒ“ƒvƒŒ[ƒg‚ðˆês“Ç‚Ý”ò‚Î‚µ‚½‚Ì‚Å, ƒ|ƒCƒ“ƒ^‚ð’²®‚·‚é */
+    	  /* ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½sï¿½Ç‚Ý”ï¿½ï¿½Î‚ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½, ï¿½|ï¿½Cï¿½ï¿½ï¿½^ï¿½ð’²ï¿½ï¿½ï¿½ï¿½ï¿½ */
     	  pixel += template->cols ;
     	}
           }
-          if ( pels ) { /* —LŒø‚É·‚ª—ÝÏ‚³‚ê‚Ä‚¢‚½ê‡‚É‚Í... */
-    	diff /= pels ; /* ‰æ‘f‚Ì·‚Ì—ÝŒv‚ð—LŒø‰æ‘f”‚ÅŠ„‚Á‚Ä³‹K‰»‚·‚é */
+          if ( pels ) { /* ï¿½Lï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ÝÏ‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚ï¿½... */
+    	diff /= pels ; /* ï¿½ï¿½ï¿½fï¿½Ìï¿½ï¿½Ì—ÝŒvï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ÅŠï¿½ï¿½ï¿½ï¿½Äï¿½ï¿½Kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
     	/*
-    	 *  ‚±‚ê‚Ü‚Å‚ÌŒ‹‰Ê‚Æ”äŠr‚µ, ·‚ª¬‚³‚¯‚ê‚Î‚»‚ÌˆÊ’u‚ðÌ—p‚·‚é.
+    	 *  ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Å‚ÌŒï¿½ï¿½Ê‚Æ”ï¿½ï¿½rï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î‚ï¿½ï¿½ÌˆÊ’uï¿½ï¿½ï¿½Ì—pï¿½ï¿½ï¿½ï¿½.
     	 */
     	if ( diff < mindiff ) {
     	  mindiff = diff ;
@@ -557,7 +585,7 @@ findPattern( template, image, cx, cy, rotation, scaling )
         }
       }
 
-      //Žb’è’l‚ÌXV
+      //ï¿½bï¿½ï¿½ï¿½lï¿½ÌXï¿½V
       if ( mindiff < mindiff_all ){
         mindiff_all = mindiff ;
         posx_all = posx ;
@@ -567,22 +595,30 @@ findPattern( template, image, cx, cy, rotation, scaling )
       }
 			// printf("pels:%d ", pels);
 
+<<<<<<< HEAD
 			// Ú×Œ‹‰Ê•\Ž¦
       printf("mindiff:%d scale:%3.1f rotate:%4.1f posx:%d posy:%d\n", mindiff, scal, rot, posx, posy);
     }
     printf("scale:%3.1f loop finished.\n", scal);
   } //loopI‚í‚è
+=======
+			// ï¿½Ú×Œï¿½ï¿½Ê•\ï¿½ï¿½
+      // printf("mindiff:%d scale:%3.1f rotate:%4.1f posx:%d posy:%d\n", mindiff, scal, rot, posx, posy);
+    }
+    // printf("scale:%3.1f loop finished.\n", scal);
+  } //loopï¿½Iï¿½ï¿½ï¿½ï¿½
+>>>>>>> 21cc0f92728e518a583aa786550d4e2f0e7beff4
 
 
 // ----------------- //
-// main‚É’TõŒ‹‰Ê‚ð•Ô‚· //
+// mainï¿½É’Tï¿½ï¿½ï¿½ï¿½ï¿½Ê‚ï¿½ï¿½Ô‚ï¿½ //
 // ----------------- //
 
-  //return‚Ì€”õ
+  //returnï¿½Ìï¿½ï¿½ï¿½
   if ( mindiff_all == 0x7fffffff )
-    return( HAS_ERROR ) ; /* ‰æ‘œŠÔ‚Ì·‚ªXV‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅŽ¸”s‚Æ”»’f */
+    return( HAS_ERROR ) ; /* ï¿½æ‘œï¿½Ô‚Ìï¿½ï¿½ï¿½ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½Ì‚ÅŽï¿½ï¿½sï¿½Æ”ï¿½ï¿½f */
     /*
-     *  ’Tõ‚ÌŒ‹‰Ê‚ð–ß‚è’l‚Ìˆø”‚ÉŠi”[
+     *  ï¿½Tï¿½ï¿½ï¿½ÌŒï¿½ï¿½Ê‚ï¿½ï¿½ß‚ï¿½ï¿½lï¿½Ìˆï¿½ï¿½ï¿½ï¿½ÉŠiï¿½[
      */
   *cx = (double)posx_all ;
   *cy = (double)posy_all ;
