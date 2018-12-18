@@ -348,12 +348,12 @@ findPattern( template, image, cx, cy, rotation, scaling )
 
   //変更箇所
 	//-------------探索パラメータ--------------
-  double scal_min = 0.9;//縮小下限
-  double scal_max = 1.2;//拡大上限
+  double scal_min = 0.4;//縮小下限
+  double scal_max = 1.7;//拡大上限
   double scal_increment = 0.1;//刻み幅
 
-  int rot_min = -10;//回転範囲
-  int rot_max = 10;//回転範囲
+  int rot_min = -25;//回転範囲
+  int rot_max = 25;//回転範囲
   int rot_increment = 1;//刻み幅
 	//---------------------------------------
 
@@ -406,8 +406,6 @@ findPattern( template, image, cx, cy, rotation, scaling )
    */
   mindiff = 0x7fffffff ;
   posx=0; posy=0;
-
-
   //for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
     //for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) { // 変更前（templateの中心をimage内で全探索）
   for ( yy = -y0 ; yy < image->rows - y1 ; yy++ ) {
@@ -505,10 +503,10 @@ findPattern( template, image, cx, cy, rotation, scaling )
        */
       mindiff = 0x7fffffff ;
       posx=0; posy=0;
-      // for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
-        // for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) { // 変更前（templateの中心をimage内で全探索）
-      // for ( yy = -y0 ; yy < image->rows - y1 ; yy++ ) {
-        // for ( xx = -x0 ; xx < image->cols - x1 ; xx++ ) { // 変更後（templateがimage内に完全に含まれる前提で全探索）
+      //for ( yy = -y1 ; yy < image->rows - y0 ; yy++ ) {
+        //for ( xx = -x1 ; xx < image->cols - x0 ; xx++ ) { // 変更前（templateの中心をimage内で全探索）
+      //for ( yy = -y0 ; yy < image->rows - y1 ; yy++ ) {
+        //for ( xx = -x0 ; xx < image->cols - x1 ; xx++ ) { // 変更後（templateがimage内に完全に含まれる前提で全探索）
       for ( yy = around_posy - error ; yy < around_posy + error ; yy++ ) {
         for ( xx = around_posx - error ; xx < around_posx + error ; xx++ ) { // 変更後（大体検討をつけて探索）
           /*
